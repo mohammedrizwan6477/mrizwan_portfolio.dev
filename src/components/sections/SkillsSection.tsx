@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   SiReact,
   SiNextdotjs,
@@ -29,7 +29,7 @@ import { Section, Card, CardBody } from "@/components/ui";
 import { skills } from "@/data/portfolio";
 
 // Icon mapping with real brand logos
-const iconMap: Record<string, React.ComponentType<{ size: number; className: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   // Frontend
   React: SiReact,
   Next: SiNextdotjs,
@@ -208,40 +208,99 @@ export function SkillsSection() {
     category: string;
     startIndex: number;
   }) => {
+    const categoryRef = useRef<HTMLDivElement>(null);
+    const isCategoryInView = useInView(categoryRef, 0.15);
     const accentColor = getCategoryAccent(category);
     const bgGradient = getCategoryColor(category);
 
+    const categoryContainerVariants: Variants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.04,
+          delayChildren: 0.08,
+        },
+      },
+    };
+
+    const cardVariants: Variants = {
+      hidden: { opacity: 0, y: 25, scale: 0.88 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+          duration: 0.45,
+          ease: "easeOut",
+        },
+      },
+    };
+
     return (
-      <motion.div variants={itemVariants}>
-        <div className="flex items-center gap-3 mb-3 sm:mb-4">
+      <div ref={categoryRef} className="space-y-3 sm:space-y-4">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={isCategoryInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3"
+        >
           <div
-            className={`w-1 h-7 sm:h-8 rounded-full bg-gradient-to-b ${bgGradient}`}
+            className={`w-1.5 h-7 sm:h-8 rounded-full bg-gradient-to-b ${bgGradient}`}
           />
           <h3 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">
             {title}
           </h3>
           <span
-            className={`ml-auto text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full ${accentColor}`}
+            className={`ml-auto text-xs sm:text-sm font-semibold px-2.5 sm:px-3.5 py-1 rounded-full ${accentColor}`}
           >
             {skillsData.length} skills
           </span>
-        </div>
+        </motion.div>
 
         <motion.div
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-1.5 sm:gap-2 md:gap-3"
-          variants={containerVariants}
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 sm:gap-3"
+          variants={categoryContainerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isCategoryInView ? "visible" : "hidden"}
         >
-          {skillsData.map((skill, index) => (
-            <SkillCard
-              key={index}
-              skill={skill}
-              index={startIndex + index}
-            />
-          ))}
+          {skillsData.map((skill, index) => {
+            const IconComponent = skill.icon ? iconMap[skill.icon] : Icons.Code;
+            const brandColor = getBrandColor(skill.icon);
+
+            return (
+              <motion.div
+                variants={cardVariants}
+                key={index}
+                className="h-full"
+                role="article"
+                aria-label={skill.name}
+                whileHover={{ y: -4, scale: 1.05, transition: { duration: 0.2 } }}
+              >
+                <Card hover glassmorphism className="h-full group">
+                  <CardBody className="!p-2.5 sm:!p-3.5 flex flex-col items-center justify-center h-full text-center">
+                    {/* Icon Container */}
+                    <div
+                      aria-hidden="true"
+                      className="mb-2 sm:mb-2.5 p-2 sm:p-2.5 rounded-xl bg-white/5 dark:bg-white/10 group-hover:bg-white/15 transition-all duration-300 shadow-sm"
+                      style={{
+                        boxShadow: `0 0 14px ${brandColor}25`,
+                      }}
+                    >
+                      <IconComponent size={22} style={{ color: brandColor }} />
+                    </div>
+
+                    {/* Skill Name */}
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm leading-tight line-clamp-2">
+                      {skill.name}
+                    </h4>
+                  </CardBody>
+                </Card>
+              </motion.div>
+            );
+          })}
         </motion.div>
-      </motion.div>
+      </div>
     );
   };
 

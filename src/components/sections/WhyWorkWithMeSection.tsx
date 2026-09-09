@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useInView } from "@/hooks";
 import { Section, Card, CardBody } from "@/components/ui";
 import { CheckCircle2, Rocket, Heart, Users, Zap, Shield, Code2, Lightbulb } from "lucide-react";
@@ -75,23 +75,36 @@ const reasons = [
 
 export function WhyWorkWithMeSection() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, 0.12);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.15 },
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.97 },
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 35, scale: 0.92 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.5 },
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const bannerVariants: Variants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.7, ease: "easeOut", delay: 0.3 },
     },
   };
 
@@ -101,10 +114,16 @@ export function WhyWorkWithMeSection() {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="space-y-8"
+        className="space-y-8 overflow-hidden"
       >
         {/* Intro */}
-        <motion.p variants={itemVariants} className="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
+        <motion.p
+          variants={{
+            hidden: { opacity: 0, y: -20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          }}
+          className="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg"
+        >
           I don&apos;t just write code—I think like a product owner, communicate like a team player,
           and ship like a senior engineer.
         </motion.p>
@@ -117,11 +136,15 @@ export function WhyWorkWithMeSection() {
           {reasons.map((reason, index) => {
             const Icon = reason.icon;
             return (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
+              >
                 <Card hover glassmorphism className="h-full group">
                   <CardBody className="space-y-3">
                     <div
-                      className={`w-12 h-12 rounded-xl ${reason.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                      className={`w-12 h-12 rounded-xl ${reason.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm`}
                     >
                       <Icon className="w-6 h-6 text-blue-500 dark:text-blue-400" />
                     </div>
@@ -139,7 +162,7 @@ export function WhyWorkWithMeSection() {
         </motion.div>
 
         {/* CTA Banner */}
-        <motion.div variants={itemVariants}>
+        <motion.div variants={bannerVariants}>
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 p-8 text-center">
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAwdi02aC02djZoNnptNiAwaDZ2Nmg2di02aC02ek0zMCAyOHY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30" />
             <div className="relative z-10 space-y-4">

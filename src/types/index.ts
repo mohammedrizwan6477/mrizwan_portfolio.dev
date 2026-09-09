@@ -26,6 +26,8 @@ export interface Project {
   website_link?: string;
   category: string;
   highlights: string[];
+  projectType?: 'experience' | 'self_work';
+  company?: string;
 }
 
 export interface Education {

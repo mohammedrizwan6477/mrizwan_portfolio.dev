@@ -3,7 +3,7 @@
 import toast from "react-hot-toast";
 import emailjs from "@emailjs/browser";
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useInView } from "@/hooks";
 import { Section, Card, CardBody, Button } from "@/components/ui";
 import { socialLinks } from "@/data/portfolio";
@@ -131,23 +131,36 @@ export function ContactSection() {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const leftContainerVariants: Variants = {
+    hidden: { opacity: 0, x: -60 },
     visible: {
       opacity: 1,
+      x: 0,
       transition: {
-        staggerChildren: 0.15,
+        duration: 0.75,
+        ease: "easeOut",
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const rightFormVariants: Variants = {
+    hidden: { opacity: 0, x: 60, scale: 0.95 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
+      x: 0,
+      scale: 1,
+      transition: { duration: 0.75, ease: "easeOut", delay: 0.15 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -186,19 +199,19 @@ export function ContactSection() {
 
   return (
     <Section id="contact" title="Let's Work Together" ref={ref}>
-      <motion.div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {/* Contact Info */}
-        <motion.div variants={itemVariants} className="space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 overflow-hidden">
+        {/* Contact Info (Slides in from Left) */}
+        <motion.div
+          variants={leftContainerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="space-y-8"
+        >
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
               Get In Touch
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed">
               I'm always interested in hearing about new projects and
               opportunities. Whether you have a question or just want to say
               hello, feel free to reach out!
@@ -206,26 +219,21 @@ export function ContactSection() {
           </div>
 
           {/* Contact Details */}
-          <motion.div
-            className="space-y-4"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
+          <div className="space-y-3 sm:space-y-4">
             {/* Email */}
             <motion.div variants={itemVariants}>
               <a
                 href={`mailto:${socialLinks.email}`}
-                className="group flex items-start gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900/50 transition-all"
+                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-transparent hover:border-blue-500/20 transition-all"
               >
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-blue-500/10 dark:bg-blue-500/5 group-hover:bg-blue-500/20 transition-all">
-                  <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/5 group-hover:bg-blue-500/20 group-hover:scale-105 transition-all shadow-sm">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                     Email
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                     {socialLinks.email}
                   </p>
                 </div>
@@ -236,16 +244,16 @@ export function ContactSection() {
             <motion.div variants={itemVariants}>
               <a
                 href={`tel:${socialLinks.phone}`}
-                className="group flex items-start gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900/50 transition-all"
+                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-transparent hover:border-green-500/20 transition-all"
               >
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-green-500/10 dark:bg-green-500/5 group-hover:bg-green-500/20 transition-all">
-                  <Phone className="w-6 h-6 text-green-600 dark:text-green-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-green-500/10 dark:bg-green-500/5 group-hover:bg-green-500/20 group-hover:scale-105 transition-all shadow-sm">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                     Phone
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                     {socialLinks.phone}
                   </p>
                 </div>
@@ -258,16 +266,16 @@ export function ContactSection() {
                 href={socialLinks.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900/50 transition-all"
+                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-transparent hover:border-emerald-500/20 transition-all"
               >
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/5 group-hover:bg-emerald-500/20 transition-all">
-                  <WhatsAppIcon className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/5 group-hover:bg-emerald-500/20 group-hover:scale-105 transition-all shadow-sm">
+                  <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                     WhatsApp
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                     {socialLinks.phone}
                   </p>
                 </div>
@@ -276,27 +284,29 @@ export function ContactSection() {
 
             {/* Location */}
             <motion.div variants={itemVariants}>
-              <div className="group flex items-start gap-4 p-4 rounded-lg">
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-red-500/10 dark:bg-red-500/5">
-                  <MapPin className="w-6 h-6 text-red-600 dark:text-red-400" />
+              <div className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl">
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-red-500/10 dark:bg-red-500/5 shadow-sm">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                     Location
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                     Maharashtra, India
                   </p>
                 </div>
               </div>
             </motion.div>
-
-          </motion.div>
-
+          </div>
         </motion.div>
 
-        {/* Contact Form */}
-        <motion.div variants={itemVariants}>
+        {/* Contact Form (Slides in from Right) */}
+        <motion.div
+          variants={rightFormVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <Card hover glassmorphism>
             <CardBody className="space-y-4">
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -384,7 +394,7 @@ export function ContactSection() {
             </CardBody>
           </Card>
         </motion.div>
-      </motion.div>
+      </div>
     </Section>
   );
 }

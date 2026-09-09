@@ -49,18 +49,40 @@ const COMMANDS: Record<string, string> = {
   projects: `Featured Projects:
   ─────────────────────────────
   🏢 Radian Title Genius
-     → Enterprise property management platform
-     → 100% WCAG 2.1 compliance
+     → Enterprise property management & 100% WCAG 2.1 platform
      → URL: https://orders.mytitlegenius.com
 
-  🎓 TruScholar Learner Module
-     → Secure credential management
-     → Real-time university communication
+  🏛️ Pyramid Platform
+     → Large-scale Angular to Next.js enterprise migration
+     → URL: https://pyramidplatform.com
+
+  📱 Balancify
+     → Smart digital Khata book & 1-click WhatsApp payment reminders
+     → URL: https://mohammedrizwan6477-balancify.vercel.app
+
+  🎓 Aspire Tuition Academy
+     → Coaching class management & zero-gateway accounting ledger
+     → URL: https://aspire-academy-client-peach.vercel.app/login
+
+  🏡 Azgari Real Estate
+     → Luxury gated plotted community & lead capture platform
+     → URL: https://azgari-realstate-omega.vercel.app
+
+  🎂 Mamta Cake Store
+     → Online bakery & custom confectionery storefront
+     → URL: https://mamta-cake-store.vercel.app
+
+  📜 TruScholar Learner Module
+     → Secure credential & transcript management solution
      → URL: https://www.truscholar.io
 
   🛒 JD Store (E-Commerce)
-     → Full MERN stack with Stripe payments
-     → URL: https://jd-store-frontend.vercel.app`,
+     → Full MERN stack e-commerce platform
+     → URL: https://jd-store-frontend.vercel.app
+
+  ✨ Interactive Developer Portfolio
+     → Next.js 16, Tailwind CSS 4, Prisma & retro terminal
+     → URL: https://mrizwan-porftolio-dev.vercel.app`,
   status: `Current Status:
   ─────────────────────────────
   🟢 Available for Full-Time Roles

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowDown, ExternalLink, FileDown, MapPin, Briefcase, Star } from "lucide-react";
-import { Button } from "@/components/ui";
+import { Button, Boxes } from "@/components/ui";
 import { downloadResume, scrollToSection } from "@/utils/helpers";
 
 const roles = [
@@ -16,7 +16,7 @@ const roles = [
 
 const stats = [
   { value: "3+", label: "Years Exp." },
-  { value: "7+", label: "Projects" },
+  { value: "10+", label: "Projects" },
   { value: "15+", label: "Technologies" },
 ];
 
@@ -61,6 +61,25 @@ export function HeroSection() {
     return () => clearTimeout(timeout);
   }, [displayedText, isTyping, roleIndex]);
 
+  const heroPhotoRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroPhotoRef,
+    offset: ["start end", "center center"],
+  });
+
+  const smoothHeroScroll = useSpring(heroScroll, {
+    stiffness: 100,
+    damping: 22,
+    mass: 0.5,
+  });
+
+  const heroClipPath = useTransform(
+    smoothHeroScroll,
+    [0, 1],
+    ["circle(0% at 50% 50%)", "circle(75% at 50% 50%)"]
+  );
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -93,8 +112,13 @@ export function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center pt-16 sm:pt-20 px-3 sm:px-6 lg:px-8 overflow-hidden"
     >
+      {/* Aceternity Interactive Background Boxes Matrix */}
+      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden pointer-events-auto [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_80%)] opacity-40 dark:opacity-75 transition-opacity duration-300">
+        <Boxes />
+      </div>
+
       {/* Animated Background Blobs */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl"
           animate={{ y: [0, 100, 0], x: [0, 50, 0] }}
@@ -320,17 +344,21 @@ export function HeroSection() {
               />
 
               {/* Gradient border ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 p-[4px]">
-                {/* Inner dark ring for contrast */}
-                <div className="w-full h-full rounded-full bg-white dark:bg-gray-950 p-[4px]">
-                  {/* Photo */}
-                  <div className="w-full h-full rounded-full overflow-hidden">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-cyan-500 p-[3px] shadow-2xl shadow-blue-500/20">
+                {/* Inner dark ring for seamless contrast in light & dark mode */}
+                <div className="w-full h-full rounded-full bg-gray-950 p-[3px] overflow-hidden">
+                  {/* Photo with scroll image reveal */}
+                  <motion.div
+                    ref={heroPhotoRef}
+                    style={{ clipPath: heroClipPath }}
+                    className="w-full h-full rounded-full overflow-hidden bg-gray-950 flex items-center justify-center"
+                  >
                     <img
                       src="/profile.jpeg"
                       alt="Mohammed Rizwan — Senior Software Engineer"
-                      className="w-full h-full object-cover object-top scale-110"
+                      className="w-full h-full object-cover object-[center_20%] scale-105"
                     />
-                  </div>
+                  </motion.div>
                 </div>
               </div>
 

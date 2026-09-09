@@ -129,7 +129,7 @@ export function Footer() {
           >
             {[
               { label: "Years Experience", value: "3+" },
-              { label: "Projects Done", value: "7+" },
+              { label: "Projects Done", value: "10+" },
               { label: "Technologies", value: "15+" },
               { label: "Happy Clients", value: "4+" },
             ].map((stat) => (
