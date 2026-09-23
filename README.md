@@ -2,7 +2,7 @@
 
 > Personal developer portfolio for **Mohammed Rizwan**, Senior Software Engineer specializing in React, Next.js, Node.js, and modern full-stack web development.
 
-🌐 **Live Site:** [https://mrizwan-porftolio-dev.vercel.app/](https://mrizwan-porftolio-dev.vercel.app/)
+🌐 **Live Site:** [https://mrizwan-portfolio-dev.vercel.app/](https://mrizwan-portfolio-dev.vercel.app/)
 
 ---
 
