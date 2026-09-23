@@ -225,20 +225,20 @@ export function TerminalWidget({ isOpen, onClose }: TerminalWidgetProps) {
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
           >
             {/* Title bar */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-gray-800 border-b border-gray-700">
+            <div className="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-neutral-800">
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={onClose}
-                  className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors flex items-center justify-center group"
+                  className="w-3 h-3 rounded-full bg-neutral-600 hover:bg-neutral-500 transition-colors flex items-center justify-center group"
                   aria-label="Close terminal"
                 >
-                  <X className="w-1.5 h-1.5 text-red-900 opacity-0 group-hover:opacity-100" />
+                  <X className="w-1.5 h-1.5 text-neutral-950 opacity-0 group-hover:opacity-100" />
                 </button>
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <div className="w-3 h-3 rounded-full bg-neutral-700" />
+                <div className="w-3 h-3 rounded-full bg-neutral-700" />
               </div>
               <div className="flex-1 text-center">
-                <span className="text-xs text-gray-400 font-mono">
+                <span className="text-xs text-neutral-400 font-mono">
                   mrizwan@portfolio:~
                 </span>
               </div>
@@ -246,21 +246,21 @@ export function TerminalWidget({ isOpen, onClose }: TerminalWidgetProps) {
 
             {/* Terminal content */}
             <div
-              className="bg-gray-950 p-4 font-mono text-sm h-80 overflow-y-auto cursor-text"
+              className="bg-black p-4 font-mono text-sm h-80 overflow-y-auto cursor-text"
               onClick={() => inputRef.current?.focus()}
             >
               {lines.map((line, i) => (
                 <div key={i} className="mb-1">
                   {line.type === "welcome" && (
-                    <pre className="text-cyan-400 text-xs leading-relaxed whitespace-pre-wrap">
+                    <pre className="text-neutral-200 text-xs leading-relaxed whitespace-pre-wrap font-semibold">
                       {line.content}
                     </pre>
                   )}
                   {line.type === "input" && (
-                    <p className="text-green-400">{line.content}</p>
+                    <p className="text-white font-medium">{line.content}</p>
                   )}
                   {line.type === "output" && (
-                    <pre className="text-gray-300 text-xs leading-relaxed whitespace-pre-wrap">
+                    <pre className="text-neutral-300 text-xs leading-relaxed whitespace-pre-wrap">
                       {line.content}
                     </pre>
                   )}
@@ -269,14 +269,14 @@ export function TerminalWidget({ isOpen, onClose }: TerminalWidgetProps) {
 
               {/* Input line */}
               <div className="flex items-center gap-2 mt-2">
-                <span className="text-green-400">$</span>
+                <span className="text-neutral-300">$</span>
                 <input
                   ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="flex-1 bg-transparent text-green-300 outline-none caret-green-400 placeholder-gray-600"
+                  className="flex-1 bg-transparent text-white outline-none caret-white placeholder-neutral-600"
                   placeholder="type a command..."
                   spellCheck={false}
                   autoComplete="off"
@@ -287,13 +287,13 @@ export function TerminalWidget({ isOpen, onClose }: TerminalWidgetProps) {
             </div>
 
             {/* Quick commands */}
-            <div className="bg-gray-900 px-4 py-2 border-t border-gray-700">
+            <div className="bg-neutral-900 px-4 py-2 border-t border-neutral-800">
               <div className="flex flex-wrap gap-1.5">
                 {["whoami", "skills", "status", "contact", "help"].map((cmd) => (
                   <button
                     key={cmd}
                     onClick={() => handleCommand(cmd)}
-                    className="px-2 py-0.5 text-xs rounded bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white transition-colors font-mono"
+                    className="px-2 py-0.5 text-xs rounded bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-colors font-mono"
                   >
                     {cmd}
                   </button>
@@ -312,7 +312,7 @@ export function TerminalButton({ onClick }: { onClick: () => void }) {
   return (
     <motion.button
       onClick={onClick}
-      className="fixed bottom-20 right-4 sm:bottom-8 sm:right-24 z-40 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-900 dark:bg-gray-800 text-white shadow-lg border border-gray-700 hover:border-green-500/50 transition-all text-sm font-mono group"
+      className="fixed bottom-20 right-4 sm:bottom-8 sm:right-24 z-40 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900 dark:bg-neutral-800 text-white shadow-lg border border-neutral-700 hover:border-neutral-500 transition-all text-sm font-mono group"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, x: 20 }}
@@ -320,7 +320,7 @@ export function TerminalButton({ onClick }: { onClick: () => void }) {
       transition={{ delay: 2 }}
       aria-label="Open terminal"
     >
-      <Terminal className="w-4 h-4 text-green-400 group-hover:animate-pulse" />
+      <Terminal className="w-4 h-4 text-neutral-300 group-hover:text-white" />
       <span className="hidden sm:inline">Terminal</span>
     </motion.button>
   );

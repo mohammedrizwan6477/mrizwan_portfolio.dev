@@ -19,11 +19,9 @@ type Feedback = {
 };
 
 const GRADIENTS = [
-  "from-blue-500 to-cyan-500",
-  "from-purple-500 to-pink-500",
-  "from-green-500 to-teal-500",
-  "from-orange-500 to-amber-500",
-  "from-rose-500 to-red-500",
+  "from-neutral-900 to-neutral-700",
+  "from-neutral-800 to-neutral-600",
+  "from-neutral-700 to-neutral-500",
 ];
 
 export function TestimonialsSection() {
@@ -132,28 +130,28 @@ export function TestimonialsSection() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Form Section */}
           <motion.div variants={itemVariants} className="md:col-span-2">
-            <Card glassmorphism>
-              <CardBody>
+            <Card>
+              <CardBody className="p-6">
                 <div className="flex items-center gap-2 mb-6">
-                  <MessageSquare className="w-5 h-5 text-blue-500" />
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Leave Feedback</h3>
+                  <MessageSquare className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-white">Leave Feedback</h3>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label htmlFor="feedback-name" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="feedback-name" className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                       Name
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <User className="h-4 w-4 text-gray-400" />
+                        <User className="h-4 w-4 text-neutral-400" />
                       </div>
                       <input
                         id="feedback-name"
                         type="text"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="block w-full pl-9 pr-3 py-2.5 text-sm bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors dark:text-white outline-none"
+                        className="block w-full pl-9 pr-3 py-2 text-sm bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-colors text-neutral-900 dark:text-white"
                         placeholder="John Doe"
                         required
                         disabled={isSubmitting}
@@ -162,42 +160,42 @@ export function TestimonialsSection() {
                   </div>
 
                   <div>
-                    <label htmlFor="feedback-role" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="feedback-role" className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                       Role &amp; Company (Optional)
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Briefcase className="h-4 w-4 text-gray-400" />
+                        <Briefcase className="h-4 w-4 text-neutral-400" />
                       </div>
                       <input
                         id="feedback-role"
                         type="text"
                         value={formData.role}
                         onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                        className="block w-full pl-9 pr-3 py-2.5 text-sm bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors dark:text-white outline-none"
-                        placeholder="e.g. Product Manager at TechCorp"
+                        className="block w-full pl-9 pr-3 py-2 text-sm bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-colors text-neutral-900 dark:text-white"
+                        placeholder="e.g. Senior Engineer at TechCorp"
                         disabled={isSubmitting}
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="feedback-content" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="feedback-content" className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                       Your Feedback
                     </label>
                     <textarea
                       id="feedback-content"
                       value={formData.content}
                       onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                      rows={5}
-                      className="block w-full px-3 py-2.5 text-sm bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none dark:text-white outline-none"
+                      rows={4}
+                      className="block w-full px-3 py-2 text-sm bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-colors resize-none text-neutral-900 dark:text-white"
                       placeholder="What was it like working together?"
                       required
                       disabled={isSubmitting}
                     />
                   </div>
 
-                  <Button type="submit" className="w-full justify-center py-2.5" disabled={isSubmitting}>
+                  <Button type="submit" variant="primary" className="w-full justify-center py-2.5 cursor-pointer" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <span className="animate-pulse">Submitting...</span>
                     ) : (
@@ -214,10 +212,10 @@ export function TestimonialsSection() {
 
           {/* Live Feed Section */}
           <motion.div variants={itemVariants} className="md:col-span-3 space-y-4">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2 px-1">
+            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2 px-1">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600 dark:bg-blue-400"></span>
               </span>
               Live Feed
             </h3>
@@ -232,11 +230,11 @@ export function TestimonialsSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-center py-12 px-4 border border-dashed border-gray-200 dark:border-gray-800 rounded-xl"
+                    className="text-center py-12 px-4 border border-dashed border-neutral-200 dark:border-neutral-800 rounded-2xl"
                   >
-                    <MessageSquare className="w-8 h-8 mx-auto text-gray-300 dark:text-gray-700 mb-3" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">No feedback yet.</p>
-                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Be the first to leave a review using the form!</p>
+                    <MessageSquare className="w-8 h-8 mx-auto text-neutral-400 dark:text-neutral-600 mb-3" />
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">No feedback yet.</p>
+                    <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-1">Be the first to leave a review using the form!</p>
                   </motion.div>
                 ) : (
                   feedbacks.map((item) => (
@@ -248,30 +246,30 @@ export function TestimonialsSection() {
                       transition={{ duration: 0.3 }}
                       layout
                     >
-                      <Card glassmorphism hover>
+                      <Card hover>
                         <CardBody className="p-4 sm:p-5">
                           <div className="flex gap-4">
                             <div
-                              className={`w-10 h-10 rounded-full bg-gradient-to-br ${item.avatarGradient} flex items-center justify-center text-white font-bold shrink-0 shadow-inner`}
+                              className="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white font-semibold text-sm shrink-0 border border-neutral-200 dark:border-neutral-700"
                             >
                               {item.name.charAt(0).toUpperCase()}
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between items-start mb-1">
                                 <div>
-                                  <h4 className="text-sm font-bold text-gray-900 dark:text-white truncate">
+                                  <h4 className="text-sm font-semibold text-neutral-900 dark:text-white truncate">
                                     {item.name}
                                   </h4>
-                                  <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                  <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
                                     {item.role}
                                   </p>
                                 </div>
-                                <div className="flex items-center gap-1 text-[10px] text-gray-400 font-medium bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">
+                                <div className="flex items-center gap-1 text-[10px] text-neutral-500 dark:text-neutral-400 font-medium bg-neutral-100 dark:bg-neutral-800/80 px-2 py-0.5 rounded-full border border-neutral-200/60 dark:border-neutral-700/60">
                                   <Clock className="w-3 h-3" />
                                   {item.date}
                                 </div>
                               </div>
-                              <p className="text-sm text-gray-700 dark:text-gray-300 mt-3 leading-relaxed italic">
+                              <p className="text-sm text-neutral-700 dark:text-neutral-300 mt-3 leading-relaxed">
                                 &ldquo;
                                 {expandedIds.has(item.id)
                                   ? item.content
@@ -282,7 +280,7 @@ export function TestimonialsSection() {
                               {truncateText(item.content).isTruncated && (
                                 <button
                                   onClick={() => toggleExpanded(item.id)}
-                                  className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mt-2 transition-colors"
+                                  className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline mt-2 transition-colors cursor-pointer"
                                 >
                                   {expandedIds.has(item.id) ? "Show Less ↑" : "Show More ↓"}
                                 </button>

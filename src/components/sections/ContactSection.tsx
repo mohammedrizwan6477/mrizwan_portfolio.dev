@@ -224,16 +224,16 @@ export function ContactSection() {
             <motion.div variants={itemVariants}>
               <a
                 href={`mailto:${socialLinks.email}`}
-                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-transparent hover:border-blue-500/20 transition-all"
+                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
               >
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/5 group-hover:bg-blue-500/20 group-hover:scale-105 transition-all shadow-sm">
-                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:scale-105 transition-all shadow-sm">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                  <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
                     Email
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm">
                     {socialLinks.email}
                   </p>
                 </div>
@@ -244,16 +244,16 @@ export function ContactSection() {
             <motion.div variants={itemVariants}>
               <a
                 href={`tel:${socialLinks.phone}`}
-                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-transparent hover:border-green-500/20 transition-all"
+                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
               >
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-green-500/10 dark:bg-green-500/5 group-hover:bg-green-500/20 group-hover:scale-105 transition-all shadow-sm">
-                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:scale-105 transition-all shadow-sm">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                  <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
                     Phone
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm">
                     {socialLinks.phone}
                   </p>
                 </div>
@@ -266,16 +266,16 @@ export function ContactSection() {
                 href={socialLinks.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/50 border border-transparent hover:border-emerald-500/20 transition-all"
+                className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
               >
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/5 group-hover:bg-emerald-500/20 group-hover:scale-105 transition-all shadow-sm">
-                  <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:scale-105 transition-all shadow-sm">
+                  <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                  <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
                     WhatsApp
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm">
                     {socialLinks.phone}
                   </p>
                 </div>
@@ -285,14 +285,14 @@ export function ContactSection() {
             {/* Location */}
             <motion.div variants={itemVariants}>
               <div className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl">
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-red-500/10 dark:bg-red-500/5 shadow-sm">
-                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-red-600 dark:text-red-400" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 shadow-sm">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+                  <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
                     Location
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm">
                     Maharashtra, India
                   </p>
                 </div>
@@ -307,12 +307,12 @@ export function ContactSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <Card hover glassmorphism>
-            <CardBody className="space-y-4">
+          <Card hover>
+            <CardBody className="p-6 sm:p-8 space-y-4">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name */}
                 <div>
-                  <label htmlFor="contact-name" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
                     Full Name
                   </label>
                   <input
@@ -322,14 +322,14 @@ export function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-sm"
                     placeholder="Your Name"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="contact-email" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
                     Email Address
                   </label>
                   <input
@@ -339,14 +339,14 @@ export function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-sm"
                     placeholder="your@email.com"
                   />
                 </div>
 
                 {/* Subject */}
                 <div>
-                  <label htmlFor="contact-subject" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                  <label htmlFor="contact-subject" className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
                     Subject
                   </label>
                   <input
@@ -356,14 +356,14 @@ export function ContactSection() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                    placeholder="Subject"
+                    className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all text-sm"
+                    placeholder="Subject (e.g. Project Inquiry, Job Opportunity)"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="contact-message" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-neutral-900 dark:text-white mb-2">
                     Message
                   </label>
                   <textarea
@@ -373,22 +373,21 @@ export function ContactSection() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 dark:focus:ring-blue-500/20 focus:border-blue-600 dark:focus:border-blue-500 transition-all resize-none text-sm"
                     placeholder="Your message here..."
                   />
                 </div>
 
-                {/* Status handled by toast notifications */}
-
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  size="lg"
+                  variant="primary"
+                  size="md"
                   disabled={isSubmitting}
-                  className="w-full cursor-pointer"
+                  className="w-full min-h-[46px] cursor-pointer justify-center text-sm sm:text-base font-semibold shadow-sm hover:shadow-md"
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <Send className="w-4 h-4 mr-2" />
+                  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                 </Button>
               </form>
             </CardBody>

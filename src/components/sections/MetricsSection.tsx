@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
 import { useInView } from "@/hooks";
 import { Section, Card, CardBody } from "@/components/ui";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-import { Trophy, Rocket, Users, Star, Zap, Shield, Award } from "lucide-react";
+import { Trophy, Rocket, Star, Zap, CheckCircle2 } from "lucide-react";
 
 const metrics = [
   {
@@ -13,168 +12,97 @@ const metrics = [
     value: 3,
     suffix: "+",
     label: "Years Experience",
-    sublabel: "Professional engineering",
-    color: "from-blue-500 to-cyan-500",
-    bgColor: "bg-blue-500/10",
+    sublabel: "Professional software engineering",
   },
   {
     icon: Trophy,
-    value: 4,
+    value: 10,
     suffix: "+",
-    label: "Projects Contributed",
-    sublabel: "Enterprise & startup apps",
-    color: "from-amber-500 to-orange-500",
-    bgColor: "bg-amber-500/10",
+    label: "Projects Delivered",
+    sublabel: "Enterprise & production applications",
   },
   {
     icon: Zap,
     value: 4,
     suffix: "+",
-    label: "Production Applications",
-    sublabel: "Serving real users daily",
-    color: "from-purple-500 to-pink-500",
-    bgColor: "bg-purple-500/10",
+    label: "Production Deployments",
+    sublabel: "Live platforms serving users",
   },
-  // {
-  //   icon: Users,
-  //   value: 5,
-  //   suffix: "+",
-  //   label: "Enterprise Clients",
-  //   sublabel: "B2B & B2C platforms",
-  //   color: "from-green-500 to-teal-500",
-  //   bgColor: "bg-green-500/10",
-  // },
-  // {
-  //   icon: Shield,
-  //   value: 95,
-  //   suffix: "+",
-  //   label: "Lighthouse Score",
-  //   sublabel: "Performance average",
-  //   color: "from-cyan-500 to-blue-500",
-  //   bgColor: "bg-cyan-500/10",
-  // },
   {
     icon: Star,
     value: 100,
     suffix: "%",
     label: "WCAG Compliance",
-    sublabel: "Accessibility-first builds",
-    color: "from-emerald-500 to-green-500",
-    bgColor: "bg-emerald-500/10",
+    sublabel: "Accessibility-first architecture",
   },
-  // {
-  //   icon: Award,
-  //   value: 15,
-  //   suffix: "+",
-  //   label: "Technologies Mastered",
-  //   sublabel: "Across full stack",
-  //   color: "from-rose-500 to-pink-500",
-  //   bgColor: "bg-rose-500/10",
-  // },
-  // {
-  //   icon: Rocket,
-  //   value: 500,
-  //   suffix: "+",
-  //   label: "GitHub Contributions",
-  //   sublabel: "In 2025 alone",
-  //   color: "from-violet-500 to-purple-500",
-  //   bgColor: "bg-violet-500/10",
-  // },
 ];
 
 const achievements = [
-  { text: "Led 100% WCAG 2.1 accessibility compliance on enterprise platform", icon: "♿" },
-  { text: "Reduced application load time by 40% through performance optimization", icon: "⚡" },
-  { text: "Built real-time transcript system serving 50,000+ university students", icon: "🎓" },
-  { text: "Delivered enterprise endorsement template system with complex business rules", icon: "🏢" },
-  { text: "Implemented role-based access control securing sensitive financial data", icon: "🔐" },
+  "Led 100% WCAG 2.1 AA accessibility implementation across enterprise platform using ARC Toolkit and ARIA standards",
+  "Engineered real-time transcript request & delivery module serving over 50,000+ university users",
+  "Developed mission-critical endorsement template engine adhering to complex confidential business rules",
+  "Optimized frontend bundle and Core Web Vitals, achieving 95+ performance scores and 40% load time reduction",
+  "Designed role-based access control (RBAC) and JWT authentication workflows securing sensitive data",
 ];
 
 export function MetricsSection() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } },
-  };
+  const isInView = useInView(ref, 0.1);
 
   return (
-    <Section id="metrics" title="By The Numbers" ref={ref}>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="space-y-10"
-      >
-        {/* Section intro */}
-        <motion.p variants={itemVariants} className="text-center text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-          Real numbers from real projects. These aren&apos;t estimates—they&apos;re results.
-        </motion.p>
-
-        {/* Metrics grid */}
+    <Section id="metrics" title="Impact &amp; Key Metrics" ref={ref}>
+      <div className="space-y-8 max-w-5xl mx-auto">
+        {/* Metrics 4-Col Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {metrics.map((metric, index) => {
             const Icon = metric.icon;
             return (
-              <motion.div key={index} variants={itemVariants}>
-                <Card hover glassmorphism className="h-full text-center group">
-                  <CardBody className="space-y-2 py-5">
-                    <div className={`w-12 h-12 rounded-xl ${metric.bgColor} flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-6 h-6 text-blue-500" />
-                    </div>
-                    <p className={`text-3xl sm:text-4xl font-black bg-gradient-to-br ${metric.color} bg-clip-text text-transparent`}>
-                      <AnimatedCounter
-                        target={metric.value}
-                        suffix={metric.suffix}
-                        isInView={isInView}
-                        delay={index * 0.1}
-                      />
-                    </p>
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm">{metric.label}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{metric.sublabel}</p>
-                  </CardBody>
-                </Card>
-              </motion.div>
+              <Card key={index} hover className="text-center">
+                <CardBody className="p-5 space-y-2 flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center mb-1">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white">
+                    <AnimatedCounter
+                      target={metric.value}
+                      suffix={metric.suffix}
+                      isInView={isInView}
+                      delay={index * 0.1}
+                    />
+                  </p>
+                  <p className="font-semibold text-neutral-900 dark:text-white text-xs sm:text-sm">
+                    {metric.label}
+                  </p>
+                  <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
+                    {metric.sublabel}
+                  </p>
+                </CardBody>
+              </Card>
             );
           })}
-
         </div>
 
-        {/* Key achievements */}
-        <motion.div variants={itemVariants}>
-          <Card glassmorphism>
-            <CardBody>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-amber-400" />
-                Key Achievements
-              </h3>
-              <div className="space-y-3">
-                {achievements.map((a, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-start gap-3 p-3 rounded-lg bg-white/50 dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-blue-500/30 transition-colors"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                  >
-                    <span className="text-xl flex-shrink-0">{a.icon}</span>
-                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{a.text}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </CardBody>
-          </Card>
-        </motion.div>
-      </motion.div>
+        {/* Key Achievements Card */}
+        <Card>
+          <CardBody className="p-6 sm:p-7 space-y-4">
+            <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+              <Trophy className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              Key Engineering Milestones
+            </h3>
+            <div className="space-y-2.5">
+              {achievements.map((achievement, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200/60 dark:border-neutral-800/80 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                  <span>{achievement}</span>
+                </div>
+              ))}
+            </div>
+          </CardBody>
+        </Card>
+      </div>
     </Section>
   );
 }

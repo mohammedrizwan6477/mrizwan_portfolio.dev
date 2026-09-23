@@ -12,12 +12,14 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const theme = useThemeHook();
+  const value = {
+    theme: "dark" as const,
+    toggleTheme: () => {},
+    mounted: true,
+  };
 
-  // Always provide context (even before mounted) so useTheme never throws.
-  // Components can check `mounted` themselves to avoid hydration mismatches.
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
 

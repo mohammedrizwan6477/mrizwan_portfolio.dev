@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { Header, Footer } from "@/components";
+import { Footer } from "@/components";
 import ToasterWrapper from "@/components/ui/Toaster";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
@@ -66,40 +66,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} h-full antialiased scroll-smooth`}
+      className={`${geistSans.variable} dark h-full antialiased scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                try {
-                  var storedTheme = localStorage.getItem('theme');
-                  var isDark = storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch (e) {}
-              })();
+              document.documentElement.classList.add('dark');
             `,
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col transition-colors duration-300" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
-        {/* Animated Blobs Background */}
-        <div className="animated-blobs-container">
-          <div className="blob blob-1" />
-          <div className="blob blob-2" />
-          <div className="blob blob-3" />
-        </div>
-
+      <body className="min-h-full flex flex-col transition-colors duration-300 bg-[#09090b] text-[#f8fafc]" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
         {/* Main Content */}
         <div className="relative z-10">
           <ThemeProvider>
-            <Header />
             <main className="flex-1">{children}</main>
             <Footer />
             <ToasterWrapper />

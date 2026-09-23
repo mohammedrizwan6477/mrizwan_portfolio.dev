@@ -16,15 +16,13 @@ export const BoxesCore = ({
 
   const colors = useMemo(
     () => [
-      "rgba(56, 189, 248, 0.75)",   // sky-400
-      "rgba(244, 114, 182, 0.75)",  // pink-400
-      "rgba(74, 222, 128, 0.75)",   // green-400
-      "rgba(250, 204, 21, 0.75)",   // yellow-400
-      "rgba(248, 113, 113, 0.75)",  // red-400
-      "rgba(192, 132, 252, 0.75)",  // purple-400
-      "rgba(96, 165, 250, 0.75)",   // blue-400
-      "rgba(129, 140, 248, 0.75)",  // indigo-400
-      "rgba(167, 139, 250, 0.75)",  // violet-400
+      "rgba(255, 255, 255, 0.25)",
+      "rgba(220, 220, 220, 0.20)",
+      "rgba(180, 180, 180, 0.18)",
+      "rgba(140, 140, 140, 0.15)",
+      "rgba(100, 100, 100, 0.12)",
+      "rgba(60, 60, 60, 0.10)",
+      "rgba(20, 20, 20, 0.08)",
     ],
     []
   );
@@ -47,20 +45,20 @@ export const BoxesCore = ({
       {rows.map((_, i) => (
         <div
           key={`row` + i}
-          className="w-20 h-10 border-l border-slate-300/35 dark:border-slate-800/50 relative flex-shrink-0"
+          className="w-20 h-10 border-l border-neutral-300/30 dark:border-neutral-800/60 relative flex-shrink-0"
         >
           {cols.map((_, j) => (
             <motion.div
               whileHover={{
                 backgroundColor: getRandomColor(),
-                boxShadow: "0 0 24px rgba(56, 189, 248, 0.45)",
+                boxShadow: "0 0 20px rgba(160, 160, 160, 0.25)",
                 transition: { duration: 0 },
               }}
               animate={{
                 transition: { duration: 1.8 },
               }}
               key={`col` + j}
-              className="w-20 h-10 border-r border-t border-slate-300/35 dark:border-slate-800/50 relative transition-colors duration-300 cursor-crosshair"
+              className="w-20 h-10 border-r border-t border-neutral-300/30 dark:border-neutral-800/60 relative transition-colors duration-300 cursor-crosshair"
             >
               {j % 2 === 0 && i % 2 === 0 ? (
                 <svg

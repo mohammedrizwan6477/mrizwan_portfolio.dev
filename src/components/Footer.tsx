@@ -2,13 +2,11 @@
 
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { scrollToSection } from "@/utils/helpers";
-import { navigation, socialLinks } from "@/data/portfolio";
-import { Mail, ArrowUp } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import { AnalyticsDisplay } from "@/components/AnalyticsDisplay";
 import { useInView } from "@/hooks";
+import { socialLinks } from "@/data/portfolio";
 
-// lucide-react doesn't ship Github or Linkedin icons in this version
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
     <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
@@ -21,6 +19,12 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const WhatsAppIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+  </svg>
+);
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const ref = useRef<HTMLDivElement>(null);
@@ -30,137 +34,77 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const socials = [
+    {
+      name: "GitHub",
+      href: socialLinks.github,
+      icon: GithubIcon,
+      hoverClass: "hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800",
+    },
+    {
+      name: "LinkedIn",
+      href: socialLinks.linkedin,
+      icon: LinkedinIcon,
+      hoverClass: "hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50",
+    },
+    {
+      name: "Email",
+      href: `mailto:${socialLinks.email}`,
+      icon: Mail,
+      hoverClass: "hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50",
+    },
+    {
+      name: "WhatsApp",
+      href: socialLinks.whatsapp,
+      icon: WhatsAppIcon,
+      hoverClass: "hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/50",
+    },
+  ];
+
   return (
     <footer className="relative border-t" style={{ borderColor: 'var(--border-base)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          {/* Brand */}
-          <div>
-            <motion.div
-              className="flex items-center space-x-2 mb-4"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                <span className="text-white font-bold">MR</span>
-              </div>
-              <span className="font-bold text-lg bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Mohammed Rizwan
-              </span>
-            </motion.div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-              Senior Software Engineer building scalable, modern web applications.
-            </p>
-          </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        {/* Analytics & Social Row */}
+        <div ref={ref} className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-6">
+          {/* Visitor Counters */}
+          <AnalyticsDisplay isInView={isInView} />
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-4">
-              Quick Links
-            </h4>
-            <nav className="space-y-2">
-              {navigation.map((item) => (
-                <motion.button
-                  key={item.label}
-                  onClick={() => scrollToSection(item.href.replace("#", ""))}
-                  className="block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors"
-                  whileHover={{ x: 5 }}
+          {/* Clickable Social Icons */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            {socials.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  aria-label={item.name}
+                  className={`w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${item.hoverClass}`}
                 >
-                  {item.label}
-                </motion.button>
-              ))}
-            </nav>
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                </a>
+              );
+            })}
           </div>
+        </div>
 
-          {/* Social Links */}
-          <div>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-4">
-              Connect
-            </h4>
-            <div className="flex gap-3">
-              <a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-gray-100 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 transition-all"
-                aria-label="GitHub"
-              >
-                <GithubIcon className="w-5 h-5" />
-              </a>
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-gray-100 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-all"
-                aria-label="LinkedIn"
-              >
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a
-                href={`mailto:${socialLinks.email}`}
-                className="p-3 rounded-lg bg-gray-100 dark:bg-gray-900/50 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-gray-200 dark:hover:bg-gray-800 transition-all"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </motion.div>
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-neutral-800">
+          <p className="text-xs sm:text-sm text-neutral-400 text-center sm:text-left">
+            © {currentYear} Mohammed Rizwan. All rights reserved.
+          </p>
 
-        {/* Divider */}
-        <div className="border-t py-8" style={{ borderColor: 'var(--border-base)' }}>
-          {/* Analytics Stats */}
-          <div ref={ref} className="mb-8">
-            <AnalyticsDisplay isInView={isInView} />
-          </div>
-
-          {/* Stats */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          {/* Scroll to Top Button */}
+          <motion.button
+            onClick={handleScrollToTop}
+            aria-label="Scroll to top"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-all text-neutral-400 hover:text-white cursor-pointer shadow-xs"
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.95 }}
           >
-            {[
-              { label: "Years Experience", value: "3+" },
-              { label: "Projects Done", value: "10+" },
-              { label: "Technologies", value: "15+" },
-              { label: "Happy Clients", value: "4+" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  {stat.value}
-                </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Bottom */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
-              © {currentYear} Mohammed Rizwan. All rights reserved.
-            </p>
-
-            {/* Scroll to Top Button */}
-            <motion.button
-              onClick={handleScrollToTop}
-              aria-label="Scroll to top"
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900/50 transition-all"
-              whileHover={{ y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ArrowUp className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" />
-            </motion.button>
-          </div>
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
         </div>
       </div>
     </footer>

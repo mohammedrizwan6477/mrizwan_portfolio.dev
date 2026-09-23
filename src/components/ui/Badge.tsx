@@ -10,15 +10,15 @@ interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Badge({ variant = "primary", className, children }: BadgeProps) {
   const variants = {
-    primary: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
+    primary: "bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-700",
     secondary:
-      "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+      "bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700",
     outline:
       "border text-[var(--text-muted)]",
     success:
-      "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400",
+      "bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700",
     warning:
-      "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+      "bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700",
   };
 
   return (

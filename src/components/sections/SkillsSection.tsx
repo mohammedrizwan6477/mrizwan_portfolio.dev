@@ -28,7 +28,6 @@ import { useInView } from "@/hooks";
 import { Section, Card, CardBody } from "@/components/ui";
 import { skills } from "@/data/portfolio";
 
-// Icon mapping with real brand logos
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   // Frontend
   React: SiReact,
@@ -68,72 +67,9 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Zap: Icons.Zap,
 };
 
-const getCategoryColor = (category: string) => {
-  const colors = {
-    frontend: "from-blue-500 to-cyan-500",
-    backend: "from-purple-500 to-pink-500",
-    tools: "from-amber-500 to-orange-500",
-    other: "from-green-500 to-emerald-500",
-  };
-  return colors[category as keyof typeof colors] || colors.frontend;
-};
-
-// Official brand colors for each technology
-const getBrandColor = (skillIcon?: string): string => {
-  const colorMap: Record<string, string> = {
-    // Frontend
-    React: "#61DAFB", // Cyan Blue
-    Next: "#000000", // Black
-    TypeScript: "#3178C6", // Blue
-    Tailwind: "#06B6D4", // Cyan
-    Redux: "#764ABC", // Purple
-    FramerMotion: "#0055FF", // Blue
-    Palette: "#007FFF", // Material UI Blue
-    Code: "#6B7280", // Gray (generic)
-    Smartphone: "#6B7280", // Gray (generic)
-    Lightbulb: "#FFD700", // Gold
-
-    // Backend
-    Node: "#339933", // Green
-    Express: "#000000", // Black
-    Layers: "#E0234E", // NestJS Red
-    MongoDB: "#13AA52", // Green
-    PostgreSQL: "#336791", // Blue
-    GraphQL: "#E10098", // Pink
-    Database: "#0C344B", // Prisma Navy
-    Share2: "#6B7280", // Gray (generic)
-    Lock: "#6B7280", // Gray (generic)
-
-    // Tools & Workflow
-    GitBranch: "#F1502F", // Git Orange-Red
-    Send: "#6B7280", // Gray (generic)
-    Container: "#2496ED", // Docker Blue
-    CheckSquare: "#0052CC", // JIRA Blue
-    FileCode: "#007ACC", // VS Code Blue
-    Eye: "#4A90E2", // Accessibility Blue
-    Wand2: "#00A67E", // GitHub Copilot Teal
-    Brain: "#5A67D8", // Claude Indigo
-    Users: "#00BCD4", // Collaboration Cyan
-    CheckCircle: "#4CAF50", // Code Review Green
-    Sparkles: "#FF6B35", // AI Orange
-    Zap: "#FFD700", // Energy Yellow
-  };
-  return colorMap[skillIcon || "Code"] || "#6B7280";
-};
-
-const getCategoryAccent = (category: string) => {
-  const accents = {
-    frontend: "bg-blue-500/20 text-blue-600 dark:text-blue-400",
-    backend: "bg-purple-500/20 text-purple-600 dark:text-purple-400",
-    tools: "bg-amber-500/20 text-amber-600 dark:text-amber-400",
-    other: "bg-green-500/20 text-green-600 dark:text-green-400",
-  };
-  return accents[category as keyof typeof accents] || accents.frontend;
-};
-
 export function SkillsSection() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, 0.1);
 
   const skillsByCategory = {
     frontend: skills.filter((s) => s.category === "frontend"),
@@ -142,222 +78,70 @@ export function SkillsSection() {
     other: skills.filter((s) => s.category === "other"),
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.04,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
-  const SkillCard = ({
-    skill,
-    index,
-  }: {
-    skill: (typeof skills)[0];
-    index: number;
-  }) => {
-    const IconComponent = skill.icon ? iconMap[skill.icon] : Icons.Code;
-    const brandColor = getBrandColor(skill.icon);
-
-    return (
-      <motion.div variants={itemVariants} key={index} className="h-full" role="article" aria-label={skill.name}>
-        <Card hover glassmorphism className="h-full group">
-          <CardBody className="!p-2 sm:!p-3 flex flex-col items-center justify-center h-full text-center">
-            {/* Icon Container - showing brand colors */}
-            <div
-              aria-hidden="true"
-              className={`mb-2 sm:mb-2.5 p-2 sm:p-2.5 rounded-md bg-white/5 dark:bg-white/10 group-hover:bg-white/10 dark:group-hover:bg-white/15 group-hover:shadow-lg transition-all duration-300`}
-              style={{
-                boxShadow: `0 0 12px ${brandColor}20`,
-              }}
-            >
-              <IconComponent size={20} style={{ color: brandColor }} className="" />
-            </div>
-
-            {/* Skill Name */}
-            <h4 className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm leading-tight line-clamp-2">
-              {skill.name}
-            </h4>
-          </CardBody>
-        </Card>
-      </motion.div>
-    );
-  };
-
-  const SkillCategorySection = ({
+  const SkillCategoryGroup = ({
     title,
     skillsData,
-    category,
-    startIndex,
   }: {
     title: string;
     skillsData: (typeof skills)[0][];
-    category: string;
-    startIndex: number;
   }) => {
-    const categoryRef = useRef<HTMLDivElement>(null);
-    const isCategoryInView = useInView(categoryRef, 0.15);
-    const accentColor = getCategoryAccent(category);
-    const bgGradient = getCategoryColor(category);
-
-    const categoryContainerVariants: Variants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.04,
-          delayChildren: 0.08,
-        },
-      },
-    };
-
-    const cardVariants: Variants = {
-      hidden: { opacity: 0, y: 25, scale: 0.88 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: {
-          duration: 0.45,
-          ease: "easeOut",
-        },
-      },
-    };
-
     return (
-      <div ref={categoryRef} className="space-y-3 sm:space-y-4">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isCategoryInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-3"
-        >
-          <div
-            className={`w-1.5 h-7 sm:h-8 rounded-full bg-gradient-to-b ${bgGradient}`}
-          />
-          <h3 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">
+      <div className="space-y-3.5">
+        <div className="flex items-center justify-between pb-1 border-b border-neutral-100 dark:border-neutral-800">
+          <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-white">
             {title}
           </h3>
-          <span
-            className={`ml-auto text-xs sm:text-sm font-semibold px-2.5 sm:px-3.5 py-1 rounded-full ${accentColor}`}
-          >
-            {skillsData.length} skills
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
+            {skillsData.length}
           </span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 sm:gap-3"
-          variants={categoryContainerVariants}
-          initial="hidden"
-          animate={isCategoryInView ? "visible" : "hidden"}
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5 sm:gap-3">
           {skillsData.map((skill, index) => {
             const IconComponent = skill.icon ? iconMap[skill.icon] : Icons.Code;
-            const brandColor = getBrandColor(skill.icon);
 
             return (
-              <motion.div
-                variants={cardVariants}
+              <div
                 key={index}
-                className="h-full"
-                role="article"
-                aria-label={skill.name}
-                whileHover={{ y: -4, scale: 1.05, transition: { duration: 0.2 } }}
+                className="group flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-neutral-900/80 border border-neutral-200/80 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-xs transition-all duration-150"
               >
-                <Card hover glassmorphism className="h-full group">
-                  <CardBody className="!p-2.5 sm:!p-3.5 flex flex-col items-center justify-center h-full text-center">
-                    {/* Icon Container */}
-                    <div
-                      aria-hidden="true"
-                      className="mb-2 sm:mb-2.5 p-2 sm:p-2.5 rounded-xl bg-white/5 dark:bg-white/10 group-hover:bg-white/15 transition-all duration-300 shadow-sm"
-                      style={{
-                        boxShadow: `0 0 14px ${brandColor}25`,
-                      }}
-                    >
-                      <IconComponent size={22} style={{ color: brandColor }} />
-                    </div>
-
-                    {/* Skill Name */}
-                    <h4 className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm leading-tight line-clamp-2">
-                      {skill.name}
-                    </h4>
-                  </CardBody>
-                </Card>
-              </motion.div>
+                <div className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0">
+                  <IconComponent size={18} />
+                </div>
+                <span className="font-semibold text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 truncate">
+                  {skill.name}
+                </span>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     );
   };
 
   return (
-    <Section id="skills" title="Skills & Expertise" ref={ref}>
-      <motion.div
-        className="space-y-6 sm:space-y-7 md:space-y-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {/* Frontend Skills */}
-        {skillsByCategory.frontend.length > 0 && (
-          <SkillCategorySection
-            title="Frontend"
-            skillsData={skillsByCategory.frontend}
-            category="frontend"
-            startIndex={0}
-          />
-        )}
+    <Section id="skills" title="Technical Skills" ref={ref}>
+      <div className="space-y-8 sm:space-y-10">
+        <SkillCategoryGroup
+          title="Frontend & UI Architecture"
+          skillsData={skillsByCategory.frontend}
+        />
 
-        {/* Backend Skills */}
-        {skillsByCategory.backend.length > 0 && (
-          <SkillCategorySection
-            title="Backend"
-            skillsData={skillsByCategory.backend}
-            category="backend"
-            startIndex={skillsByCategory.frontend.length}
-          />
-        )}
+        <SkillCategoryGroup
+          title="Backend & Cloud Infrastructure"
+          skillsData={skillsByCategory.backend}
+        />
 
-        {/* Tools & Workflow */}
-        {skillsByCategory.tools.length > 0 && (
-          <SkillCategorySection
-            title="Tools & Workflow"
-            skillsData={skillsByCategory.tools}
-            category="tools"
-            startIndex={
-              skillsByCategory.frontend.length + skillsByCategory.backend.length
-            }
-          />
-        )}
+        <SkillCategoryGroup
+          title="Tools & Development Loop"
+          skillsData={skillsByCategory.tools}
+        />
 
-        {/* Other Skills */}
-        {skillsByCategory.other.length > 0 && (
-          <SkillCategorySection
-            title="Soft Skills"
-            skillsData={skillsByCategory.other}
-            category="other"
-            startIndex={
-              skillsByCategory.frontend.length +
-              skillsByCategory.backend.length +
-              skillsByCategory.tools.length
-            }
-          />
-        )}
-      </motion.div>
+        <SkillCategoryGroup
+          title="Engineering & Soft Skills"
+          skillsData={skillsByCategory.other}
+        />
+      </div>
     </Section>
   );
 }

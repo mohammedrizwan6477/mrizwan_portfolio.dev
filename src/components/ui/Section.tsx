@@ -16,21 +16,19 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       <section
         ref={ref}
         id={id}
-        className={cn("relative py-12 sm:py-20 px-3 sm:px-6 lg:px-8", className)}
+        className={cn("relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8", className)}
         {...props}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {(title || subtitle) && (
-            <div className="mb-8 sm:mb-12 text-center">
+            <div className="mb-10 sm:mb-14 text-center max-w-2xl mx-auto">
               {title && (
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                    {title}
-                  </span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                  {title}
                 </h2>
               )}
               {subtitle && (
-                <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
+                <p className="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   {subtitle}
                 </p>
               )}
@@ -49,7 +47,7 @@ export function Container({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", className)} {...props}>
+    <div className={cn("max-w-6xl mx-auto px-4 sm:px-6 lg:px-8", className)} {...props}>
       {children}
     </div>
   );

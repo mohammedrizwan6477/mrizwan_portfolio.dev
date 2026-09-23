@@ -19,31 +19,11 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-xl sm:rounded-2xl transition-all duration-300",
-        glassmorphism &&
-          "backdrop-blur-md border",
-        !glassmorphism &&
-          "border",
+        "rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/90 shadow-sm transition-all duration-200",
         hover &&
-          "hover:-translate-y-1",
+          "hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-md hover:-translate-y-0.5",
         className
       )}
-      style={{
-        background: glassmorphism ? undefined : 'var(--card-bg)',
-        borderColor: 'var(--card-border)',
-        boxShadow: hover ? undefined : 'var(--card-shadow)',
-        ...(glassmorphism
-          ? { background: 'var(--card-bg)', backdropFilter: 'blur(16px) saturate(1.4)' }
-          : {}),
-      }}
-      onMouseEnter={hover ? (e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = 'var(--card-hover-shadow)';
-        (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(56,189,248,0.25)';
-      } : undefined}
-      onMouseLeave={hover ? (e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = 'var(--card-shadow)';
-        (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--card-border)';
-      } : undefined}
       {...props}
     >
       {children}
@@ -56,7 +36,7 @@ export function CardHeader({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("px-6 py-4 border-b", className)} style={{ borderColor: 'var(--border-base)' }}>
+    <div className={cn("px-5 sm:px-6 py-4 border-b border-neutral-100 dark:border-neutral-800", className)}>
       {children}
     </div>
   );
@@ -66,7 +46,7 @@ export function CardBody({
   children,
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("px-6 py-4", className)}>{children}</div>;
+  return <div className={cn("p-5 sm:p-6", className)}>{children}</div>;
 }
 
 export function CardFooter({
@@ -74,7 +54,7 @@ export function CardFooter({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("px-6 py-4 border-t", className)} style={{ borderColor: 'var(--border-base)' }}>
+    <div className={cn("px-5 sm:px-6 py-4 border-t border-neutral-100 dark:border-neutral-800", className)}>
       {children}
     </div>
   );

@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useInView } from "@/hooks";
-import { Section, Card, CardBody } from "@/components/ui";
+import { Section, Card, CardBody, Button } from "@/components/ui";
 import { downloadResume } from "@/utils/helpers";
 import { socialLinks } from "@/data/portfolio";
 import {
@@ -11,320 +10,145 @@ import {
   Download,
   Mail,
   ExternalLink,
-  ChevronDown,
-  Sparkles,
 } from "lucide-react";
 
 const summary = [
-  { label: "React / Next.js Expert" },
-  { label: "Full Stack MERN Developer" },
-  { label: "Accessibility (WCAG) Focused" },
-  { label: "Enterprise Experience" },
-  { label: "AI-Assisted Development" },
-  { label: "TypeScript Proficient" },
-  { label: "Available for Remote Opportunities" },
-  { label: "Production-Ready Code Quality" },
+  "Senior Software Engineer (3+ Years)",
+  "React & Next.js Architecture Expert",
+  "Full Stack MERN & TypeScript Stack",
+  "WCAG 2.1 AA Accessibility Specialist",
+  "AI-Augmented Engineering Workflows",
+  "Production & Enterprise Experience",
+  "Open to Full-Time & Remote Roles",
+  "Fast Ramp-Up & Strong Communication",
 ];
 
 const quickFacts = [
-  { label: "Experience",    value: "3+ Years" },
-  { label: "Location",     value: "Maharashtra, IN" },
-  { label: "Work Mode",    value: "Remote / Hybrid" },
-  { label: "Employment",   value: "Full-Time / Freelance" },
-  { label: "Specialization", value: "React + Next.js" },
+  { label: "Experience", value: "3+ Years Professional" },
+  { label: "Location", value: "Maharashtra, India" },
+  { label: "Availability", value: "Immediate / Notice Period" },
+  { label: "Work Preference", value: "Remote / Hybrid / Full-Time" },
+  { label: "Primary Stack", value: "React, Next.js, Node.js, TS" },
 ];
-
-// ── Shared variants ────────────────────────────────────────────────────────────
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1 },
-};
-
-// Items use explicit animate so we can pass a custom delay per-index
-// (function-form variants are not supported in this version's TS types)
-const factRowBase = {
-  hidden: { opacity: 0, x: 20 },
-  visible: { opacity: 1, x: 0 },
-};
-
-const linkBase = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
-};
-
-// ── Subtle tilt card on hover ─────────────────────────────────────────────────
-function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [4, -4]), { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-4, 4]), { stiffness: 200, damping: 20 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top)  / rect.height - 0.5);
-  };
-  const handleMouseLeave = () => { x.set(0); y.set(0); };
-
-  return (
-    <motion.div
-      ref={ref}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export function RecruiterSummarySection() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, 0.1);
 
   return (
-    <Section id="recruiter-summary" title="Quick Recruiter Summary" ref={ref}>
-      {/* Ambient background orb */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-        aria-hidden
-      >
-        <motion.div
-          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-gradient-to-br from-blue-500/10 via-cyan-400/5 to-transparent blur-3xl"
-          animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.9, 0.6] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
+    <Section id="recruiter-summary" title="Recruiter Summary" ref={ref}>
+      <div className="space-y-6 max-w-5xl mx-auto">
+        <p className="text-center text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto">
+          Key highlights and hiring facts at a glance for recruiters and hiring managers.
+        </p>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="space-y-6"
-      >
-        {/* Subtitle */}
-        <motion.p
-          variants={cardVariants}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center text-gray-500 dark:text-gray-400 max-w-xl mx-auto"
-        >
-          Everything you need to know about Mohammed Rizwan, at a glance.
-        </motion.p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          {/* ── Candidate Overview Card ────────────────────────────────────────── */}
+          <Card className="h-full">
+            <CardBody className="p-6 sm:p-7 space-y-6 flex flex-col justify-between h-full">
+              <div>
+                {/* Header with avatar & role */}
+                <div className="flex items-center gap-4 pb-4 border-b border-neutral-100 dark:border-neutral-800">
+                  <div className="w-12 h-12 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 font-bold text-base flex items-center justify-center flex-shrink-0 shadow-xs">
+                    MR
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-neutral-900 dark:text-white">
+                      Mohammed Rizwan
+                    </h3>
+                    <p className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400">
+                      Senior Software Engineer
+                    </p>
+                  </div>
+                </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-          {/* ── Profile card ──────────────────────────────────────────────── */}
-          <motion.div variants={cardVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
-            <TiltCard className="h-full">
-              <Card glassmorphism className="h-full">
-                <CardBody>
-                  {/* Avatar + name */}
-                  <div className="flex items-start gap-4 mb-6">
-                    <motion.div
-                      className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 shadow-lg shadow-blue-500/30"
-                      whileHover={{ scale: 1.08, rotate: 3 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                    >
-                      MR
-                      {/* Sparkle badge */}
-                      <motion.span
-                        className="absolute -top-1.5 -right-1.5 bg-amber-400 rounded-full p-0.5"
-                        animate={{ rotate: [0, 15, -15, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <Sparkles className="w-3 h-3 text-white" />
-                      </motion.span>
-                    </motion.div>
-
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        Mohammed Rizwan
-                      </h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium">
-                        Senior Software Engineer
-                      </p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                        </span>
-                        <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                          Available Now
-                        </span>
+                {/* Key Checklist */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4">
+                  {summary.map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                      <div className="p-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex-shrink-0">
+                        <Check className="w-3.5 h-3.5" />
                       </div>
+                      <span className="truncate">{item}</span>
                     </div>
-                  </div>
+                  ))}
+                </div>
+              </div>
 
-                  {/* Checklist */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
-                    {summary.map((item, i) => (
-                      <motion.div
-                        key={i}
-                        className="flex items-center gap-2 group"
-                        initial={{ opacity: 0, x: -16 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 }}
-                        transition={{ delay: 0.25 + i * 0.06, duration: 0.45, ease: "easeOut" }}
-                        whileHover={{ x: 3 }}
-                      >
-                        <motion.span
-                          initial={{ scale: 0 }}
-                          animate={isInView ? { scale: 1 } : { scale: 0 }}
-                          transition={{
-                            delay: 0.3 + i * 0.07,
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 15,
-                          }}
-                          className="flex-shrink-0"
-                        >
-                          <Check className="w-4 h-4 text-emerald-500" />
-                        </motion.span>
-                        <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-                          {item.label}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-2.5 pt-4 border-t border-neutral-100 dark:border-neutral-800">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={downloadResume}
+                  className="flex-1 sm:flex-initial"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV / Resume
+                </Button>
+                <a
+                  href={`mailto:${socialLinks.email}`}
+                  className="flex-1 sm:flex-initial"
+                >
+                  <Button variant="secondary" size="sm" className="w-full">
+                    <Mail className="w-4 h-4 mr-2" />
+                    Email Directly
+                  </Button>
+                </a>
+              </div>
+            </CardBody>
+          </Card>
 
-                  {/* Action buttons */}
-                  <div className="flex flex-wrap gap-2">
-                    <motion.button
-                      onClick={downloadResume}
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium shadow-md shadow-blue-500/20"
-                      aria-label="Download CV"
-                      whileHover={{ scale: 1.04, boxShadow: "0 8px 24px rgba(59,130,246,0.35)" }}
-                      whileTap={{ scale: 0.97 }}
+          {/* ── Quick Facts Card ───────────────────────────────────────────────── */}
+          <Card className="h-full">
+            <CardBody className="p-6 sm:p-7 space-y-5 flex flex-col justify-between h-full">
+              <div>
+                <h4 className="font-bold text-base text-neutral-900 dark:text-white pb-3 border-b border-neutral-100 dark:border-neutral-800">
+                  Quick Details
+                </h4>
+
+                <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
+                  {quickFacts.map((fact, i) => (
+                    <div key={i} className="flex items-center justify-between py-2.5 text-xs sm:text-sm">
+                      <span className="text-neutral-500 dark:text-neutral-400 font-medium">
+                        {fact.label}
+                      </span>
+                      <span className="font-semibold text-neutral-900 dark:text-white text-right">
+                        {fact.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Verified Profiles Row */}
+              <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800">
+                <p className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2.5">
+                  Verified Profiles
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { href: socialLinks.linkedin, label: "LinkedIn" },
+                    { href: socialLinks.github, label: "GitHub" },
+                    { href: socialLinks.whatsapp, label: "WhatsApp" },
+                  ].map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-colors border border-neutral-200/60 dark:border-neutral-700/60"
                     >
-                      <motion.span
-                        animate={{ y: [0, -2, 0] }}
-                        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <Download className="w-4 h-4" />
-                      </motion.span>
-                      Download CV
-                    </motion.button>
-
-                    <motion.a
-                      href={`mailto:${socialLinks.email}`}
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium"
-                      whileHover={{ scale: 1.04, backgroundColor: "rgba(59,130,246,0.08)" }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <Mail className="w-4 h-4" />
-                      Email Me
-                    </motion.a>
-                  </div>
-                </CardBody>
-              </Card>
-            </TiltCard>
-          </motion.div>
-
-          {/* ── Quick facts card ───────────────────────────────────────────── */}
-          <motion.div variants={cardVariants} transition={{ duration: 0.6, ease: "easeOut" }}>
-            <TiltCard className="h-full">
-              <Card glassmorphism className="h-full">
-                <CardBody>
-                  <motion.h4
-                    className="font-bold text-gray-900 dark:text-white mb-4"
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2, duration: 0.4 }}
-                  >
-                    Quick Facts
-                  </motion.h4>
-
-                  <div className="space-y-3 mb-6">
-                    {quickFacts.map((fact, i) => (
-                      <motion.div
-                        key={i}
-                        initial={factRowBase.hidden}
-                        animate={isInView ? factRowBase.visible : factRowBase.hidden}
-                        transition={{ delay: 0.2 + i * 0.07, duration: 0.45, ease: "easeOut" }}
-                        className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-white/10 last:border-0"
-                        whileHover={{ x: 2 }}
-                      >
-                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {fact.label}
-                        </span>
-
-                          <motion.span
-                            className="text-sm font-semibold text-gray-900 dark:text-white"
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ delay: 0.3 + i * 0.07 }}
-                          >
-                            {fact.value}
-                          </motion.span>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Connect links */}
-                  <motion.h4
-                    className="font-bold text-gray-900 dark:text-white mb-3"
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5, duration: 0.35 }}
-                  >
-                    Connect
-                  </motion.h4>
-
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      {
-                        href: socialLinks.linkedin,
-                        label: "LinkedIn",
-                        className:
-                          "bg-blue-600/10 text-blue-600 dark:text-blue-400 hover:bg-blue-600/20",
-                      },
-                      {
-                        href: socialLinks.github,
-                        label: "GitHub",
-                        className:
-                          "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700",
-                      },
-                      {
-                        href: socialLinks.whatsapp,
-                        label: "WhatsApp",
-                        className:
-                          "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20",
-                      },
-                    ].map((link, i) => (
-                      <motion.a
-                        key={link.label}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={linkBase.hidden}
-                        animate={isInView ? linkBase.visible : linkBase.hidden}
-                        transition={{ delay: 0.55 + i * 0.08, duration: 0.4 }}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${link.className}`}
-                        whileHover={{ scale: 1.06, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        {link.label}
-                      </motion.a>
-                    ))}
-                  </div>
-                </CardBody>
-              </Card>
-            </TiltCard>
-          </motion.div>
-
+                      <span>{link.label}</span>
+                      <ExternalLink className="w-3 h-3 opacity-60" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </CardBody>
+          </Card>
         </div>
-      </motion.div>
+      </div>
     </Section>
   );
 }

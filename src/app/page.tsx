@@ -15,24 +15,9 @@ const AboutSection = lazy(() =>
     default: mod.AboutSection,
   }))
 );
-const MetricsSection = lazy(() =>
-  import("@/components/sections/MetricsSection").then((mod) => ({
-    default: mod.MetricsSection,
-  }))
-);
-const SkillsSection = lazy(() =>
-  import("@/components/sections/SkillsSection").then((mod) => ({
-    default: mod.SkillsSection,
-  }))
-);
 const ExperienceSection = lazy(() =>
   import("@/components/sections/ExperienceSection").then((mod) => ({
     default: mod.ExperienceSection,
-  }))
-);
-const CurrentlyWorkingSection = lazy(() =>
-  import("@/components/sections/CurrentlyWorkingSection").then((mod) => ({
-    default: mod.CurrentlyWorkingSection,
   }))
 );
 const ProjectsSection = lazy(() =>
@@ -43,22 +28,6 @@ const ProjectsSection = lazy(() =>
 const GitHubActivitySection = lazy(() =>
   import("@/components/sections/GitHubActivitySection").then((mod) => ({
     default: mod.GitHubActivitySection,
-  }))
-);
-
-const WhyWorkWithMeSection = lazy(() =>
-  import("@/components/sections/WhyWorkWithMeSection").then((mod) => ({
-    default: mod.WhyWorkWithMeSection,
-  }))
-);
-const TestimonialsSection = lazy(() =>
-  import("@/components/sections/TestimonialsSection").then((mod) => ({
-    default: mod.TestimonialsSection,
-  }))
-);
-const RecruiterSummarySection = lazy(() =>
-  import("@/components/sections/RecruiterSummarySection").then((mod) => ({
-    default: mod.RecruiterSummarySection,
   }))
 );
 const EducationSection = lazy(() =>
@@ -88,19 +57,7 @@ export default function Home() {
       </LazySection>
 
       <LazySection>
-        <MetricsSection />
-      </LazySection>
-
-      <LazySection>
-        <SkillsSection />
-      </LazySection>
-
-      <LazySection>
         <ExperienceSection />
-      </LazySection>
-
-      <LazySection>
-        <CurrentlyWorkingSection />
       </LazySection>
 
       <LazySection>
@@ -109,20 +66,6 @@ export default function Home() {
 
       <LazySection>
         <GitHubActivitySection />
-      </LazySection>
-
-
-
-      <LazySection>
-        <WhyWorkWithMeSection />
-      </LazySection>
-
-      <LazySection>
-        <TestimonialsSection />
-      </LazySection>
-
-      <LazySection>
-        <RecruiterSummarySection />
       </LazySection>
 
       <LazySection>
@@ -138,8 +81,6 @@ export default function Home() {
 
       {/* Terminal Modal */}
       <TerminalWidget isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
-
-
     </>
   );
 }

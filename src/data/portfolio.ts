@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
     id: "1",
     company: "Vassu Tech Services Pvt Ltd",
     position: "Senior Software Engineer",
-    duration: "March 2025 – Present",
+    duration: "March 2025 – September 2026",
     location: "Hyderabad, Telangana",
     client: "Radian Title Genius",
     description: [
@@ -455,9 +455,9 @@ export const socialLinks = {
 export const navigation = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "GitHub", href: "#github-activity" },
+  { label: "Education", href: "#education" },
   { label: "Connect", href: "#contact" },
 ];
