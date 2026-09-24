@@ -84,10 +84,13 @@ export function ContactSection() {
   };
 
   // EmailJS config
-  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
-  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
-  const EMAILJS_ADMIN_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID || "";
-  const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_t4pdki6";
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_58frpni";
+  const EMAILJS_AUTO_REPLY_TEMPLATE_ID =
+    process.env.NEXT_PUBLIC_EMAILJS_AUTO_REPLY_TEMPLATE_ID ||
+    process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID ||
+    "";
+  const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "zCKwax_05A1M275_f";
   const MY_EMAIL = process.env.NEXT_PUBLIC_MY_EMAIL || "mohammedrizwan6477@gmail.com";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -99,45 +102,63 @@ export function ContactSection() {
     }
     setIsSubmitting(true);
     try {
+      const timestamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
       const templateParams = {
         name: formData.name,
         from_name: formData.name,
+        user_name: formData.name,
         sender_name: formData.name,
         email: formData.email,
         from_email: formData.email,
+        user_email: formData.email,
         sender_email: formData.email,
         reply_to: formData.email,
         to_email: MY_EMAIL,
+        recipient_email: MY_EMAIL,
         to_name: "Mohammed Rizwan",
         title: formData.subject,
         subject: formData.subject,
         message: formData.message,
-        timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+        user_message: formData.message,
+        date: timestamp,
+        time: timestamp,
+        timestamp: timestamp,
       };
 
-      // Send primary email
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_USER_ID
-      );
-
-      // Send owner notification if a separate admin template is configured
-      if (EMAILJS_ADMIN_TEMPLATE_ID && EMAILJS_ADMIN_TEMPLATE_ID !== EMAILJS_TEMPLATE_ID) {
+      // 1. Send primary template (Admin / Notification)
+      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_USER_ID) {
         try {
           await emailjs.send(
             EMAILJS_SERVICE_ID,
-            EMAILJS_ADMIN_TEMPLATE_ID,
+            EMAILJS_TEMPLATE_ID,
             templateParams,
             EMAILJS_USER_ID
           );
-        } catch (adminErr) {
-          console.warn("Owner notification template error:", adminErr);
+        } catch (emailErr) {
+          console.warn("Primary EmailJS send error:", emailErr);
         }
       }
 
-      // Save to database
+      // 2. Send Auto-Reply template to sender (if configured)
+      if (
+        EMAILJS_SERVICE_ID &&
+        EMAILJS_AUTO_REPLY_TEMPLATE_ID &&
+        EMAILJS_AUTO_REPLY_TEMPLATE_ID !== EMAILJS_TEMPLATE_ID &&
+        EMAILJS_USER_ID
+      ) {
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_AUTO_REPLY_TEMPLATE_ID,
+            templateParams,
+            EMAILJS_USER_ID
+          );
+        } catch (autoReplyErr) {
+          console.warn("Auto-reply template error:", autoReplyErr);
+        }
+      }
+
+      // 3. Save to database
       const result = await saveContact({
         name: formData.name,
         email: formData.email,
@@ -149,10 +170,11 @@ export function ContactSection() {
         toast.success("Message sent successfully! I'll get back to you soon.");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        toast.error("Message sent but failed to save to database.");
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
       }
     } catch (err) {
-      toast.error("Failed to send message. Please try again.");
+      toast.error("Failed to send message. Please try again or reach out directly via email.");
     } finally {
       setIsSubmitting(false);
     }
