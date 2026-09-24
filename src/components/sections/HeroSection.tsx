@@ -140,7 +140,7 @@ export function HeroSection() {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200/60 dark:border-neutral-700/60">
                 <Briefcase className="w-3.5 h-3.5 text-neutral-500" />
-                Full Stack &amp; Accessibility (WCAG)
+                Full Stack Developer (MERN Stack)
               </span>
             </motion.div>
 
