@@ -83,6 +83,54 @@ const iconMap: Record<
   AIAssisted: Icons.Sparkles,
 };
 
+const iconColorMap: Record<string, string> = {
+  // Frontend
+  React: "#00D8FF",
+  Next: "currentColor",
+  TypeScript: "#3178C6",
+  Tailwind: "#06B6D4",
+  Redux: "#764ABC",
+  FramerMotion: "#FF0055",
+  MUI: "#007FFF",
+  HTML5: "#E34F26",
+  Responsive: "#3B82F6",
+  JavaScript: "#F7DF1E",
+
+  // Backend
+  Node: "#539E43",
+  Python: "#3776AB",
+  Express: "currentColor",
+  GraphQL: "#E10098",
+  REST: "#2563EB",
+  Auth: "#F59E0B",
+
+  // Database
+  PostgreSQL: "#4169E1",
+  MongoDB: "#47A248",
+  Prisma: "#5A67D8",
+  Redis: "#DC382D",
+  Mongoose: "#E53E3E",
+  Database: "#10B981",
+
+  // Tools & DevOps
+  GitHub: "currentColor",
+  GitLab: "#FC6D26",
+  Postman: "#FF6C37",
+  Docker: "#2496ED",
+  Jira: "#0052CC",
+  VSCode: "#007ACC",
+  Accessibility: "#0284C7",
+  Copilot: "#6E40C9",
+  AI: "#10A37F",
+
+  // Workflow & AI
+  Agile: "#F59E0B",
+  ProblemSolving: "#EAB308",
+  Team: "#EC4899",
+  CodeReview: "#22C55E",
+  AIAssisted: "#8B5CF6",
+};
+
 const categories = [
   { id: "frontend", label: "Frontend" },
   { id: "backend", label: "Backend" },
@@ -151,6 +199,7 @@ export function SkillsSection() {
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill) => {
               const IconComponent = skill.icon ? iconMap[skill.icon] : Icons.Code;
+              const iconColor = skill.icon ? iconColorMap[skill.icon] : undefined;
 
               return (
                 <motion.div
@@ -162,8 +211,11 @@ export function SkillsSection() {
                   transition={{ duration: 0.18 }}
                   className="group inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white dark:bg-neutral-900/90 border border-neutral-200/80 dark:border-neutral-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:bg-blue-50/30 dark:hover:bg-blue-950/20 hover:shadow-xs transition-all duration-150"
                 >
-                  <span className="text-neutral-600 dark:text-neutral-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0">
-                    <IconComponent size={15} />
+                  <span
+                    className="flex-shrink-0 transition-transform duration-200 group-hover:scale-110 flex items-center justify-center"
+                    style={{ color: iconColor }}
+                  >
+                    <IconComponent size={16} />
                   </span>
                   <span className="text-xs sm:text-sm font-medium text-neutral-800 dark:text-neutral-200 group-hover:text-neutral-900 dark:group-hover:text-white whitespace-nowrap">
                     {skill.name}

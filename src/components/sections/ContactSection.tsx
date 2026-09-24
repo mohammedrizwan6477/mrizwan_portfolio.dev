@@ -275,8 +275,8 @@ export function ContactSection() {
                 href={`mailto:${socialLinks.email}`}
                 className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
               >
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:scale-105 transition-all shadow-sm">
-                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-red-500/10 border border-red-500/20 text-[#EA4335] group-hover:scale-105 group-hover:bg-red-500/20 transition-all shadow-sm">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
@@ -295,8 +295,8 @@ export function ContactSection() {
                 href={`tel:${socialLinks.phone}`}
                 className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
               >
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:scale-105 transition-all shadow-sm">
-                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-[#2563EB] group-hover:scale-105 group-hover:bg-blue-500/20 transition-all shadow-sm">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
@@ -317,8 +317,8 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700 transition-all"
               >
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:scale-105 transition-all shadow-sm">
-                  <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[#25D366] group-hover:scale-105 group-hover:bg-emerald-500/20 transition-all shadow-sm">
+                  <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">
@@ -334,8 +334,8 @@ export function ContactSection() {
             {/* Location */}
             <motion.div variants={itemVariants}>
               <div className="group flex items-start gap-4 p-3.5 sm:p-4 rounded-xl">
-                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 shadow-sm">
-                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-800 dark:text-neutral-200" />
+                <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-500 shadow-sm">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-neutral-900 dark:text-white text-sm sm:text-base">

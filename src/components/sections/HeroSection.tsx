@@ -12,11 +12,6 @@ const stats = [
   { value: "100%", label: "WCAG Compliance" },
 ];
 
-const text3dStyle: React.CSSProperties = {
-  textShadow:
-    "0 1px 0 #e4e4e7, 0 2px 0 #cbd5e1, 0 3px 0 #94a3b8, 0 4px 0 #64748b, 0 5px 0 #475569, 0 6px 1px rgba(0,0,0,0.6), 0 10px 24px rgba(0,0,0,0.9), 0 20px 40px rgba(0,0,0,0.95)",
-};
-
 export function HeroSection() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -208,7 +203,7 @@ export function HeroSection() {
             className="flex-shrink-0 flex flex-col items-center justify-center w-full lg:w-auto relative"
           >
             {/* Subtle Ambient Backlight Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 bg-blue-500/10 dark:bg-blue-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-sky-400/25 via-blue-400/30 to-indigo-300/20 dark:from-blue-600/20 dark:to-indigo-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
             {/* Profile Cutout Image Container with Layered Typography */}
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[440px] lg:h-[440px] xl:w-[480px] xl:h-[480px] max-w-[90vw] flex items-center justify-center select-none">
@@ -221,25 +216,23 @@ export function HeroSection() {
               >
                 <div className="w-[175%] sm:w-[160%] flex flex-col items-center justify-center text-center">
                   <span
-                    className="block text-[72px] xs:text-[86px] sm:text-[104px] md:text-[124px] font-black uppercase tracking-tighter text-neutral-800 dark:text-white leading-[0.78] whitespace-nowrap text-center"
-                    style={text3dStyle}
+                    className="hero-backdrop-text block text-[72px] xs:text-[86px] sm:text-[104px] md:text-[124px] font-black uppercase tracking-tighter leading-[0.78] whitespace-nowrap text-center transition-all duration-300"
                   >
                     SOFTWARE
                   </span>
                   <span
-                    className="block text-[72px] xs:text-[86px] sm:text-[104px] md:text-[124px] font-black uppercase tracking-tighter text-neutral-800 dark:text-white leading-[0.78] mt-1 sm:mt-2 whitespace-nowrap text-center"
-                    style={text3dStyle}
+                    className="hero-backdrop-text block text-[72px] xs:text-[86px] sm:text-[104px] md:text-[124px] font-black uppercase tracking-tighter leading-[0.78] mt-1 sm:mt-2 whitespace-nowrap text-center transition-all duration-300"
                   >
                     ENGINEER
                   </span>
                 </div>
               </div>
 
-              {/* Profile Image (Layered with subtle bottom gradient fade so cut edge blends naturally) */}
+              {/* Profile Image (Layered with subtle bottom gradient fade and adaptive brightness for Light mode) */}
               <img
                 src="/profile.png"
                 alt="Mohammed Rizwan — Software Engineer"
-                className="w-full h-full object-contain relative z-10 drop-shadow-[0_8px_20px_rgba(0,0,0,0.12)] dark:drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)]"
+                className="w-full h-full object-contain relative z-10 transition-all duration-300 brightness-[1.12] contrast-[1.05] drop-shadow-[0_10px_25px_rgba(0,0,0,0.12)] dark:brightness-100 dark:contrast-100 dark:drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)]"
                 style={{
                   maskImage: "linear-gradient(to bottom, black 82%, transparent 99%)",
                   WebkitMaskImage: "linear-gradient(to bottom, black 82%, transparent 99%)",

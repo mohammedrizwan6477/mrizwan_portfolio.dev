@@ -39,25 +39,29 @@ export function Footer() {
       name: "GitHub",
       href: socialLinks.github,
       icon: GithubIcon,
-      hoverClass: "hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800",
+      color: "text-neutral-800 dark:text-neutral-100",
+      bgHover: "hover:bg-neutral-200 dark:hover:bg-neutral-800",
     },
     {
       name: "LinkedIn",
       href: socialLinks.linkedin,
       icon: LinkedinIcon,
-      hoverClass: "hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50",
+      color: "text-[#0A66C2]",
+      bgHover: "hover:bg-blue-50 dark:hover:bg-blue-950/40",
     },
     {
       name: "Email",
       href: `mailto:${socialLinks.email}`,
       icon: Mail,
-      hoverClass: "hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50",
+      color: "text-[#EA4335]",
+      bgHover: "hover:bg-red-50 dark:hover:bg-red-950/40",
     },
     {
       name: "WhatsApp",
       href: socialLinks.whatsapp,
       icon: WhatsAppIcon,
-      hoverClass: "hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/50",
+      color: "text-[#25D366]",
+      bgHover: "hover:bg-emerald-50 dark:hover:bg-emerald-950/40",
     },
   ];
 
@@ -80,7 +84,7 @@ export function Footer() {
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={item.name}
-                  className={`w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${item.hoverClass}`}
+                  className={`w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 transition-all duration-150 cursor-pointer shadow-xs hover:shadow-md hover:scale-105 active:scale-95 ${item.color} ${item.bgHover}`}
                 >
                   <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
