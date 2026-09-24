@@ -223,9 +223,13 @@ button {
   font: inherit;
 }
 
-/* ============================================================
-   MOBILE OPTIMISATIONS
-   ============================================================ */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
 @media (max-width: 639px) {
   ::-webkit-scrollbar {
     width: 0;
@@ -250,30 +254,49 @@ button {
 }
 
 /* ============================================================
-   HERO BACKDROP 3D TYPOGRAPHY (BRIGHT LUMINOUS WHITE 3D)
+   WHITE SMOKE & 3D VOLUMETRIC AURA ANIMATIONS
    ============================================================ */
-.hero-backdrop-text {
-  color: #ffffff;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
-  text-shadow: 
-    0 1px 0 #cbd5e1,
-    0 2px 0 #94a3b8,
-    0 3px 0 #64748b,
-    0 4px 0 #475569,
-    0 6px 14px rgba(15, 23, 42, 0.22),
-    0 12px 28px rgba(15, 23, 42, 0.15);
+@keyframes smokeBillow1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(10px, -14px) scale(1.12) rotate(4deg);
+    opacity: 0.85;
+  }
 }
 
-.dark .hero-backdrop-text {
-  color: #ffffff;
-  -webkit-text-stroke: 0px transparent;
-  text-shadow:
-    0 1px 0 #cbd5e1,
-    0 2px 0 #94a3b8,
-    0 3px 0 #64748b,
-    0 4px 0 #475569,
-    0 5px 0 #334155,
-    0 6px 1px rgba(0, 0, 0, 0.6),
-    0 10px 24px rgba(0, 0, 0, 0.9),
-    0 20px 40px rgba(0, 0, 0, 0.95);
+@keyframes smokeBillow2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-12px, -10px) scale(1.16) rotate(-5deg);
+    opacity: 0.75;
+  }
+}
+
+@keyframes smokeFloorFlow {
+  0%, 100% {
+    transform: translate(-50%, 0) scaleX(1) scaleY(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-50%, -4px) scaleX(1.15) scaleY(1.25);
+    opacity: 0.9;
+  }
+}
+
+.animate-smoke-1 {
+  animation: smokeBillow1 7s ease-in-out infinite alternate;
+}
+
+.animate-smoke-2 {
+  animation: smokeBillow2 9s ease-in-out infinite alternate;
+}
+
+.animate-smoke-floor {
+  animation: smokeFloorFlow 5s ease-in-out infinite alternate;
 }

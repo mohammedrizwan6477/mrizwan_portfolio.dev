@@ -80,6 +80,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
+                // Theme initialization
                 const saved = localStorage.getItem('theme');
                 if (saved === 'light') {
                   document.documentElement.classList.remove('dark');
@@ -91,11 +92,28 @@ export default function RootLayout({
               } catch (e) {
                 document.documentElement.classList.add('dark');
               }
+
+              // Suppress harmless React DevTools chrome-extension bridge disconnect errors
+              if (typeof window !== 'undefined') {
+                window.addEventListener('error', function(event) {
+                  if (
+                    event &&
+                    (event.message && (
+                      event.message.indexOf('Bridge that has been shut down') !== -1 ||
+                      event.message.indexOf('react_devtools_backend') !== -1
+                    )) ||
+                    (event.filename && event.filename.indexOf('chrome-extension') !== -1)
+                  ) {
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                  }
+                });
+              }
             `,
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col transition-colors duration-300 bg-slate-50 dark:bg-[#09090b] text-neutral-900 dark:text-[#f8fafc] relative selection:bg-blue-500/20" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
+      <body className="min-h-full flex flex-col transition-colors duration-300 bg-slate-50 dark:bg-[#09090b] text-neutral-900 dark:text-[#f8fafc] relative selection:bg-blue-500/20 overflow-x-hidden max-w-full w-full" style={{ backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}>
         {/* Ambient Grid Pattern Background (Global) */}
         <div
           aria-hidden="true"
@@ -107,7 +125,7 @@ export default function RootLayout({
         />
 
         {/* Main Content */}
-        <div className="relative z-10">
+        <div className="relative z-10 overflow-x-hidden w-full max-w-full">
           <ThemeProvider>
             <Header />
             <main className="flex-1">{children}</main>

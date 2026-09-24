@@ -68,11 +68,11 @@ export function AboutSection() {
         {/* Left Column: Narrative & Focus */}
         <motion.div variants={itemVariants} className="space-y-6">
           <div className="flex items-center gap-4 pb-2 border-b border-neutral-100 dark:border-neutral-800">
-            <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700/80">
               <img
                 src="/profile.png"
                 alt="Mohammed Rizwan"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <div>
