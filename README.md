@@ -1,6 +1,6 @@
 # Mohammed Rizwan — Portfolio
 
-> Personal developer portfolio for **Mohammed Rizwan**, Senior Software Engineer specializing in React, Next.js, Node.js, and modern full-stack web development.
+> Personal developer portfolio for **Mohammed Rizwan**, Software Engineer specializing in React, Next.js, Node.js, and modern full-stack web development.
 
 🌐 **Live Site:** [https://mrizwan-portfolio-dev.vercel.app/](https://mrizwan-portfolio-dev.vercel.app/)
 
@@ -255,7 +255,7 @@ npm run lint
 - Smooth, organic floating animations in blue, cyan, and purple colors
 - Blobs respond to theme changes (dark/light mode)
 - Spinning gradient avatar with profile photo
-- Typewriter effect cycling through role titles: Senior Software Engineer, Full Stack Developer, React Specialist, Innovation Enthusiast
+- Typewriter effect cycling through role titles: Software Engineer, Full Stack Developer, React Specialist, Innovation Enthusiast
 - CTA buttons: **Hire Me**, **Download Resume**, **View Projects**
 - Floating technology labels (React, Next.js, TypeScript, Node.js, MongoDB)
 - Animated scroll-down indicator
@@ -281,7 +281,7 @@ Skills are grouped into three categories with animated progress bars:
 - Smooth animations and transitions via Framer Motion
 
 Timeline of work history:
-1. **Senior Software Engineer** @ Vassu Tech Services Pvt Ltd (March 2025 – Present)  
+1. **Software Engineer** @ Vassu Tech Services Pvt Ltd (March 2025 – Present)  
    Client: Radian Title Genius · Hyderabad, Telangana  
    Tech: Next.js, React.js, Redux, Node.js, Express.js, NestJS, GraphQL, Prisma, PostgreSQL, Accessibility, TypeScript
 
@@ -527,7 +527,7 @@ The app can also be exported as a static site or deployed to any Node.js hosting
 ## Author
 
 **Mohammed Rizwan**  
-Senior Software Engineer  
+Software Engineer  
 📧 [mohammedrizwan6477@gmail.com](mailto:mohammedrizwan6477@gmail.com)  
 🔗 [linkedin.com/in/mohammedrizwan6477](https://linkedin.com/in/mohammedrizwan6477)  
 🐙 [github.com/mohammedrizwan6477](https://github.com/mohammedrizwan6477)  

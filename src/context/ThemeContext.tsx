@@ -5,6 +5,7 @@ import { useTheme as useThemeHook } from "@/hooks";
 
 interface ThemeContextType {
   theme: "light" | "dark";
+  setTheme: (theme: "light" | "dark") => void;
   toggleTheme: () => void;
   mounted: boolean;
 }
@@ -12,14 +13,10 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const value = {
-    theme: "dark" as const,
-    toggleTheme: () => {},
-    mounted: true,
-  };
+  const themeState = useThemeHook();
 
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={themeState}>{children}</ThemeContext.Provider>
   );
 }
 

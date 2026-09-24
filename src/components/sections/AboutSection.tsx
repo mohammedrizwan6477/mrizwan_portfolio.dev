@@ -88,7 +88,7 @@ export function AboutSection() {
 
           <div className="space-y-3 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
             <p>
-              I am a Senior Software Engineer with a passion for architecting clean, accessible, and high-performance digital products. With over 3+ years of hands-on experience, I have contributed to enterprise platforms that serve real users daily.
+              I am a Software Engineer with a passion for architecting clean, accessible, and high-performance digital products. With over 3+ years of hands-on experience, I have contributed to enterprise platforms that serve real users daily.
             </p>
             <p>
               My expertise spans the modern React/Next.js ecosystem, backend microservices with Node.js and TypeScript, and enterprise web accessibility adhering strictly to WCAG 2.1 standards.

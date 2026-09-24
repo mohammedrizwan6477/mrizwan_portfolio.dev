@@ -17,7 +17,7 @@ const COMMANDS: Record<string, string> = {
   clear       - Clear terminal`,
   whoami: `Mohammed Rizwan
   ─────────────────────────────
-  Senior Software Engineer | Full Stack Developer
+  Software Engineer | Full Stack Developer
   📍 Maharashtra, India
   🎯 3+ Years Experience
   🚀 MERN Stack Specialist
@@ -34,7 +34,7 @@ const COMMANDS: Record<string, string> = {
   A11y       → WCAG 2.1, ARC Toolkit, ARIA`,
   experience: `Work Experience:
   ─────────────────────────────
-  [2025-Now]  Senior Software Engineer @ Vassu Tech Services
+  [2025-Now]  Software Engineer @ Vassu Tech Services
               → Led WCAG accessibility implementation
               → Built complex endorsement templates
               → Production-grade Next.js + NestJS apps

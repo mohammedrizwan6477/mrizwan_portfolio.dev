@@ -6,3 +6,4 @@ export { ScrollToTop } from "./ScrollToTop";
 export { ScrollRevealImage } from "./ScrollRevealImage";
 export { Boxes, BoxesCore } from "./BackgroundBoxes";
 export { TestimonialSkeleton, FormFieldSkeleton, ContactTableSkeleton, DataGridSkeleton } from "./SkeletonLoaders";
+export { GridBackgroundDemo } from "./grid-background-demo";

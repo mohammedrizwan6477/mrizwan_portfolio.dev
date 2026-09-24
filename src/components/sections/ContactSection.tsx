@@ -86,7 +86,9 @@ export function ContactSection() {
   // EmailJS config
   const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
   const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+  const EMAILJS_ADMIN_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID || "";
   const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || "";
+  const MY_EMAIL = process.env.NEXT_PUBLIC_MY_EMAIL || "mohammedrizwan6477@gmail.com";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,18 +99,43 @@ export function ContactSection() {
     }
     setIsSubmitting(true);
     try {
-      // Send email
+      const templateParams = {
+        name: formData.name,
+        from_name: formData.name,
+        sender_name: formData.name,
+        email: formData.email,
+        from_email: formData.email,
+        sender_email: formData.email,
+        reply_to: formData.email,
+        to_email: MY_EMAIL,
+        to_name: "Mohammed Rizwan",
+        title: formData.subject,
+        subject: formData.subject,
+        message: formData.message,
+        timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      };
+
+      // Send primary email
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        {
-          name: formData.name,
-          email: formData.email,
-          title: formData.subject,
-          message: formData.message,
-        },
+        templateParams,
         EMAILJS_USER_ID
       );
+
+      // Send owner notification if a separate admin template is configured
+      if (EMAILJS_ADMIN_TEMPLATE_ID && EMAILJS_ADMIN_TEMPLATE_ID !== EMAILJS_TEMPLATE_ID) {
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_ADMIN_TEMPLATE_ID,
+            templateParams,
+            EMAILJS_USER_ID
+          );
+        } catch (adminErr) {
+          console.warn("Owner notification template error:", adminErr);
+        }
+      }
 
       // Save to database
       const result = await saveContact({

@@ -65,51 +65,6 @@ export function EducationSection() {
             ))}
           </div>
         </div>
-
-        {/* Certifications Block */}
-        <div className="space-y-4">
-          <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-            <Award className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-            Certifications &amp; Courses
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {certifications.map((cert) => (
-              <Card key={cert.id} hover className="h-full">
-                <CardBody className="p-5 space-y-2.5 h-full flex flex-col justify-between">
-                  <div className="space-y-1.5">
-                    <h4 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white leading-snug">
-                      {cert.title}
-                    </h4>
-                    <p className="text-xs font-semibold text-blue-600 dark:text-blue-400">
-                      {cert.issuer}
-                    </p>
-                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      {cert.date}
-                    </p>
-                    {cert.description && (
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                        {cert.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {cert.link && (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:text-blue-600 dark:hover:text-blue-400 pt-2 transition-colors"
-                    >
-                      <span>View Credential</span>
-                      <ExternalLink className="w-3 h-3 opacity-70" />
-                    </a>
-                  )}
-                </CardBody>
-              </Card>
-            ))}
-          </div>
-        </div>
       </motion.div>
     </Section>
   );

@@ -26,27 +26,49 @@ export function useScrollProgress() {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setThemeState] = useState<"light" | "dark">("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const saved = localStorage.getItem("theme");
     const isDark =
-      localStorage.getItem("theme") === "dark" ||
-      (!localStorage.getItem("theme") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setTheme(isDark ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", isDark);
+      saved === "dark" ||
+      (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+      !saved; // default to dark if nothing is set
+    const initialTheme: "light" | "dark" = saved === "light" ? "light" : "dark";
+    setThemeState(initialTheme);
+    if (initialTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    }
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  const setTheme = (newTheme: "light" | "dark") => {
+    setThemeState(newTheme);
+    try {
+      localStorage.setItem("theme", newTheme);
+    } catch (e) {
+      // ignore
+    }
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    }
   };
 
-  return { theme, toggleTheme, mounted };
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+  };
+
+  return { theme, setTheme, toggleTheme, mounted };
 }
 
 export function useInView(ref: React.RefObject<HTMLElement | null>, threshold = 0.1) {

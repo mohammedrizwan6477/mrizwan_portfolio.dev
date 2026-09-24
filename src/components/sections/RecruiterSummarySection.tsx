@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 const summary = [
-  "Senior Software Engineer (3+ Years)",
+  "Software Engineer (3+ Years)",
   "React & Next.js Architecture Expert",
   "Full Stack MERN & TypeScript Stack",
   "WCAG 2.1 AA Accessibility Specialist",
@@ -57,7 +57,7 @@ export function RecruiterSummarySection() {
                       Mohammed Rizwan
                     </h3>
                     <p className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400">
-                      Senior Software Engineer
+                      Software Engineer
                     </p>
                   </div>
                 </div>

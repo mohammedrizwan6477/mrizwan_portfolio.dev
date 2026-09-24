@@ -1,6 +1,6 @@
 export interface Skill {
   name: string;
-  category: 'frontend' | 'backend' | 'tools' | 'other';
+  category: 'frontend' | 'backend' | 'database' | 'tools' | 'other';
   icon?: string;
 }
 

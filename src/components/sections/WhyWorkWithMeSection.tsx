@@ -94,7 +94,7 @@ export function WhyWorkWithMeSection() {
         <Card className="bg-neutral-900 text-white dark:bg-neutral-900 dark:border-neutral-800">
           <CardBody className="p-8 text-center space-y-4">
             <h3 className="text-xl sm:text-2xl font-bold text-white">
-              Looking for a Dedicated Senior Software Engineer?
+              Looking for a Dedicated Software Engineer?
             </h3>
             <p className="text-neutral-400 text-sm max-w-md mx-auto leading-relaxed">
               I am open to full-time engineering roles, technical consulting, and high-impact freelance projects.

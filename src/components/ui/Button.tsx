@@ -21,15 +21,15 @@ export function Button({
 
   const variants = {
     primary:
-      "bg-white hover:bg-neutral-100 text-neutral-950 shadow-sm focus:ring-neutral-400 hover:shadow-md",
+      "bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-100 dark:text-neutral-950 shadow-sm focus:ring-neutral-400 hover:shadow-md",
     accent:
       "bg-blue-600 hover:bg-blue-500 text-white shadow-sm focus:ring-blue-500 hover:shadow-blue-500/25 hover:shadow-md",
     secondary:
-      "bg-neutral-800/90 text-neutral-100 hover:bg-neutral-700 border border-neutral-700/80 focus:ring-neutral-500 shadow-xs",
+      "bg-neutral-100 dark:bg-neutral-800/90 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700/80 focus:ring-neutral-500 shadow-xs",
     outline:
-      "border border-neutral-700/80 bg-neutral-900/50 text-neutral-200 hover:bg-neutral-800/90 hover:text-white hover:border-neutral-600 focus:ring-neutral-500",
+      "border border-neutral-300 dark:border-neutral-700/80 bg-white/80 dark:bg-neutral-900/50 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800/90 hover:text-neutral-950 dark:hover:text-white hover:border-neutral-400 dark:hover:border-neutral-600 focus:ring-neutral-500",
     ghost:
-      "text-neutral-400 hover:text-white hover:bg-neutral-800/60 focus:ring-neutral-500",
+      "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800/60 focus:ring-neutral-500",
   };
 
   const sizes = {

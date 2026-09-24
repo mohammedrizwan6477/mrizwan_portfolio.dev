@@ -17,6 +17,7 @@ export { SkillsSection } from "@/components/sections/SkillsSection";
 export { ExperienceSection } from "@/components/sections/ExperienceSection";
 export { ProjectsSection } from "@/components/sections/ProjectsSection";
 export { EducationSection } from "@/components/sections/EducationSection";
+export { CertificationsSection } from "@/components/sections/CertificationsSection";
 export { ContactSection } from "@/components/sections/ContactSection";
 export { CurrentlyWorkingSection } from "@/components/sections/CurrentlyWorkingSection";
 export { TestimonialsSection } from "@/components/sections/TestimonialsSection";

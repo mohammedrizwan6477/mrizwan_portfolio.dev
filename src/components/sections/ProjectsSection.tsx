@@ -236,7 +236,7 @@ export function ProjectsSection() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold border border-neutral-700/80 bg-neutral-800/80 hover:bg-neutral-700 text-neutral-200 hover:text-white transition-all active:scale-[0.98] cursor-pointer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold border border-neutral-200 dark:border-neutral-700/80 bg-neutral-100 dark:bg-neutral-800/80 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white transition-all active:scale-[0.98] cursor-pointer"
                       >
                         <GithubIcon className="w-4 h-4" />
                         Source Code
@@ -247,7 +247,7 @@ export function ProjectsSection() {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold border border-neutral-700/80 bg-neutral-800/80 hover:bg-neutral-700 text-neutral-200 hover:text-white transition-all active:scale-[0.98] cursor-pointer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold border border-neutral-200 dark:border-neutral-700/80 bg-neutral-100 dark:bg-neutral-800/80 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white transition-all active:scale-[0.98] cursor-pointer"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
@@ -265,7 +265,7 @@ export function ProjectsSection() {
           <div className="flex justify-center pt-2">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[46px] rounded-xl font-semibold text-sm sm:text-base text-white bg-neutral-800 hover:bg-neutral-700 border border-neutral-700/80 shadow-xs active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[46px] rounded-xl font-semibold text-sm sm:text-base text-neutral-900 dark:text-white bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 border border-neutral-300 dark:border-neutral-700/80 shadow-xs active:scale-[0.98] transition-all cursor-pointer"
             >
               {showAll ? (
                 <>

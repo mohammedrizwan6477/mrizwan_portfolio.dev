@@ -15,6 +15,11 @@ const AboutSection = lazy(() =>
     default: mod.AboutSection,
   }))
 );
+const SkillsSection = lazy(() =>
+  import("@/components/sections/SkillsSection").then((mod) => ({
+    default: mod.SkillsSection,
+  }))
+);
 const ExperienceSection = lazy(() =>
   import("@/components/sections/ExperienceSection").then((mod) => ({
     default: mod.ExperienceSection,
@@ -33,6 +38,11 @@ const GitHubActivitySection = lazy(() =>
 const EducationSection = lazy(() =>
   import("@/components/sections/EducationSection").then((mod) => ({
     default: mod.EducationSection,
+  }))
+);
+const CertificationsSection = lazy(() =>
+  import("@/components/sections/CertificationsSection").then((mod) => ({
+    default: mod.CertificationsSection,
   }))
 );
 const ContactSection = lazy(() =>
@@ -57,6 +67,10 @@ export default function Home() {
       </LazySection>
 
       <LazySection>
+        <SkillsSection />
+      </LazySection>
+
+      <LazySection>
         <ExperienceSection />
       </LazySection>
 
@@ -70,6 +84,10 @@ export default function Home() {
 
       <LazySection>
         <EducationSection />
+      </LazySection>
+
+      <LazySection>
+        <CertificationsSection />
       </LazySection>
 
       <LazySection>

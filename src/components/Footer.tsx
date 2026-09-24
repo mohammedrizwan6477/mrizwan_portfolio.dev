@@ -80,7 +80,7 @@ export function Footer() {
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={item.name}
-                  className={`w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${item.hoverClass}`}
+                  className={`w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-all duration-150 cursor-pointer shadow-xs active:scale-95 ${item.hoverClass}`}
                 >
                   <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
@@ -90,8 +90,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-neutral-800">
-          <p className="text-xs sm:text-sm text-neutral-400 text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
             © {currentYear} Mohammed Rizwan. All rights reserved.
           </p>
 
@@ -99,7 +99,7 @@ export function Footer() {
           <motion.button
             onClick={handleScrollToTop}
             aria-label="Scroll to top"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-all text-neutral-400 hover:text-white cursor-pointer shadow-xs"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 transition-all text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white cursor-pointer shadow-xs"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
