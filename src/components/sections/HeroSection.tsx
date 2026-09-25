@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, ExternalLink, FileDown, Mail, MapPin, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui";
 import { downloadResume, scrollToSection } from "@/utils/helpers";
+import profileImage from "../../../public/profile.png";
 
 const stats = [
   { value: "3+", label: "Years Experience" },
@@ -426,9 +428,10 @@ export function HeroSection() {
               </div>
 
               {/* Profile Image (Full-standing cutout with crisp rendering and adaptive lighting) */}
-              <img
-                src="/profile.png"
+              <Image
+                src={profileImage}
                 alt="Mohammed Rizwan — Software Engineer"
+                priority
                 className="w-full h-full object-contain object-bottom relative z-10 transition-all duration-300 drop-shadow-[0_10px_22px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_40px_rgba(0,0,0,0.9)]"
               />
 

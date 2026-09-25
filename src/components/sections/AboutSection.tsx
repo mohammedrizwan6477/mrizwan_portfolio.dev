@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useInView } from "@/hooks";
 import { Section, Card, CardBody } from "@/components/ui";
 import { Code2, Zap, Target, Users, Bot, Sparkles, CheckCircle2 } from "lucide-react";
+import profileImage from "../../../public/profile.png";
 
 const highlights = [
   {
@@ -68,10 +70,12 @@ export function AboutSection() {
         {/* Left Column: Narrative & Focus */}
         <motion.div variants={itemVariants} className="space-y-6">
           <div className="flex items-center gap-4 pb-2 border-b border-neutral-100 dark:border-neutral-800">
-            <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700/80">
-              <img
-                src="/profile.png"
+            <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700/80 relative">
+              <Image
+                src={profileImage}
                 alt="Mohammed Rizwan"
+                width={56}
+                height={56}
                 className="w-full h-full object-cover object-top"
               />
             </div>
