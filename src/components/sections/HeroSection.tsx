@@ -205,26 +205,7 @@ export function HeroSection() {
             className="flex-shrink-0 flex flex-col items-center justify-center w-full lg:w-auto relative my-4 sm:my-0 max-w-full"
           >
             {/* Ambient Radial Backlight Glow Matching Theme */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-[480px] sm:h-[480px] lg:w-[600px] lg:h-[600px] bg-gradient-to-tr from-blue-500/25 via-sky-400/25 to-indigo-500/25 dark:from-blue-600/35 dark:via-blue-500/25 dark:to-indigo-600/30 rounded-full blur-3xl pointer-events-none -z-20" />
-
-            {/* ── ATMOSPHERIC WHITE SMOKE LAYERS (Bright Volumetric Fog) ── */}
-            {/* Upper Left White Smoke Billow */}
-            <div
-              aria-hidden="true"
-              className="absolute -top-10 -left-10 sm:-top-16 sm:-left-16 w-56 h-56 sm:w-80 sm:h-80 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85)_0%,rgba(240,248,255,0.5)_40%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.55)_0%,rgba(220,235,255,0.25)_45%,transparent_70%)] blur-2xl sm:blur-3xl animate-smoke-1 pointer-events-none z-0"
-            />
-
-            {/* Upper Right White Smoke Billow */}
-            <div
-              aria-hidden="true"
-              className="absolute top-6 -right-10 sm:top-8 sm:-right-16 w-60 h-60 sm:w-88 sm:h-88 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.8)_0%,rgba(230,242,255,0.45)_45%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.5)_0%,rgba(210,230,255,0.22)_45%,transparent_70%)] blur-2xl sm:blur-3xl animate-smoke-2 pointer-events-none z-0"
-            />
-
-            {/* Center Volumetric White Smoke Haze */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 m-auto w-[92%] h-[85%] rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.75)_0%,rgba(255,255,255,0.35)_50%,transparent_80%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.45)_0%,rgba(255,255,255,0.18)_50%,transparent_80%)] blur-xl sm:blur-2xl pointer-events-none z-0"
-            />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-[480px] sm:h-[480px] lg:w-[600px] lg:h-[600px] bg-gradient-to-tr from-blue-500/20 via-sky-400/20 to-indigo-500/20 dark:from-blue-600/30 dark:via-blue-500/20 dark:to-indigo-600/25 rounded-full blur-3xl pointer-events-none -z-20" />
 
             {/* Profile Cutout Image Container */}
             <div className="relative w-[270px] h-[360px] xs:w-[310px] xs:h-[420px] sm:w-[370px] sm:h-[490px] md:w-[430px] md:h-[570px] lg:w-[480px] lg:h-[640px] xl:w-[530px] xl:h-[700px] max-w-[92vw] flex items-center justify-center select-none">
@@ -240,17 +221,30 @@ export function HeroSection() {
                   preserveAspectRatio="xMidYMid meet"
                 >
                   <defs>
-                    {/* Front Face Light Gradients */}
-                    <linearGradient id="grad3DWhiteDark" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-                      <stop offset="45%" stopColor="#f8fafc" stopOpacity="0.95" />
-                      <stop offset="100%" stopColor="#94a3b8" stopOpacity="0.85" />
+                    {/* Light Mode Architectural Slate / Steel Gradients */}
+                    <linearGradient id="grad3DLight" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#0f172a" />
+                      <stop offset="60%" stopColor="#1e293b" />
+                      <stop offset="100%" stopColor="#334155" />
                     </linearGradient>
 
-                    <linearGradient id="grad3DWhiteLight" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-                      <stop offset="55%" stopColor="#f8fafc" stopOpacity="0.95" />
-                      <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.88" />
+                    <linearGradient id="grad3DLightAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#1d4ed8" />
+                      <stop offset="60%" stopColor="#2563eb" />
+                      <stop offset="100%" stopColor="#3b82f6" />
+                    </linearGradient>
+
+                    {/* Dark Mode Luminous Titanium / Specular Gradients */}
+                    <linearGradient id="grad3DDark" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#ffffff" />
+                      <stop offset="45%" stopColor="#f8fafc" />
+                      <stop offset="100%" stopColor="#94a3b8" />
+                    </linearGradient>
+
+                    <linearGradient id="grad3DDarkAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#ffffff" />
+                      <stop offset="40%" stopColor="#93c5fd" />
+                      <stop offset="100%" stopColor="#3b82f6" />
                     </linearGradient>
 
                     {/* Filter for Ambient 3D Depth Cast Shadow */}
@@ -266,7 +260,7 @@ export function HeroSection() {
                     y="34%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-black/50 dark:fill-black/95"
+                    className="font-black uppercase tracking-wider fill-slate-900/10 dark:fill-black/95"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -282,7 +276,7 @@ export function HeroSection() {
                     y="33%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-slate-400 dark:fill-slate-700"
+                    className="font-black uppercase tracking-wider fill-slate-300 dark:fill-slate-800"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -298,7 +292,7 @@ export function HeroSection() {
                     y="32%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-slate-300 dark:fill-slate-600"
+                    className="font-black uppercase tracking-wider fill-slate-200 dark:fill-slate-700"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -314,7 +308,7 @@ export function HeroSection() {
                     y="31%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-slate-200 dark:fill-slate-400"
+                    className="font-black uppercase tracking-wider fill-slate-100 dark:fill-slate-600"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -324,17 +318,17 @@ export function HeroSection() {
                     SOFTWARE
                   </text>
 
-                  {/* Front Face (Crisp Luminous White Face with Specular Stroke) */}
+                  {/* Front Face (Crisp Luminous Face with Specular Stroke) */}
                   <text
                     x="50%"
                     y="30%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-[url(#grad3DWhiteLight)] dark:fill-[url(#grad3DWhiteDark)] stroke-white dark:stroke-white/95"
+                    className="font-black uppercase tracking-wider fill-[url(#grad3DLight)] dark:fill-[url(#grad3DDark)] stroke-slate-800/15 dark:stroke-white/90"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
-                      strokeWidth: "1.8px",
+                      strokeWidth: "1.5px",
                       letterSpacing: "0.06em",
                       filter: "drop-shadow(0 3px 12px rgba(0,0,0,0.25))",
                     }}
@@ -349,7 +343,7 @@ export function HeroSection() {
                     y="64%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-black/50 dark:fill-black/95"
+                    className="font-black uppercase tracking-wider fill-slate-900/10 dark:fill-black/95"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -365,7 +359,7 @@ export function HeroSection() {
                     y="63%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-slate-400 dark:fill-slate-700"
+                    className="font-black uppercase tracking-wider fill-blue-200/50 dark:fill-slate-800"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -381,7 +375,7 @@ export function HeroSection() {
                     y="62%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-slate-300 dark:fill-slate-600"
+                    className="font-black uppercase tracking-wider fill-blue-100/50 dark:fill-slate-700"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -397,7 +391,7 @@ export function HeroSection() {
                     y="61%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-slate-200 dark:fill-slate-400"
+                    className="font-black uppercase tracking-wider fill-slate-100 dark:fill-slate-600"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
@@ -407,19 +401,19 @@ export function HeroSection() {
                     ENGINEER
                   </text>
 
-                  {/* Front Face (Crisp Luminous White Face with Specular Stroke) */}
+                  {/* Front Face (Crisp Luminous Face with Specular Stroke) */}
                   <text
                     x="50%"
                     y="60%"
                     textAnchor="middle"
                     dominantBaseline="central"
-                    className="font-black uppercase tracking-wider fill-[url(#grad3DWhiteLight)] dark:fill-[url(#grad3DWhiteDark)] stroke-white dark:stroke-white/95"
+                    className="font-black uppercase tracking-wider fill-[url(#grad3DLightAccent)] dark:fill-[url(#grad3DDarkAccent)] stroke-blue-700/25 dark:stroke-blue-300/80"
                     style={{
                       fontSize: "92px",
                       fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif",
-                      strokeWidth: "1.8px",
+                      strokeWidth: "1.5px",
                       letterSpacing: "0.06em",
-                      filter: "drop-shadow(0 3px 12px rgba(0,0,0,0.25))",
+                      filter: "drop-shadow(0 3px 12px rgba(37,99,235,0.25))",
                     }}
                   >
                     ENGINEER
@@ -427,40 +421,17 @@ export function HeroSection() {
                 </svg>
               </div>
 
-              {/* Profile Image (Full-standing cutout with crisp rendering and adaptive lighting) */}
+              {/* Profile Image (Clean presentation without below-image dark shadows) */}
               <Image
                 src={profileImage}
                 alt="Mohammed Rizwan — Software Engineer"
                 priority
-                className="w-full h-full object-contain object-bottom relative z-10 transition-all duration-300 drop-shadow-[0_10px_22px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_16px_40px_rgba(0,0,0,0.9)]"
+                className="w-full h-full object-contain object-bottom relative z-10 transition-all duration-300"
+                style={{
+                  maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)",
+                }}
               />
-
-              {/* Rolling White Floor Smoke Flowing around sneakers */}
-              <div
-                aria-hidden="true"
-                className="absolute -bottom-2 sm:-bottom-3 left-1/2 w-[95%] h-12 sm:h-16 rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.85)_0%,rgba(240,248,255,0.45)_45%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.55)_0%,rgba(220,235,255,0.25)_45%,transparent_75%)] blur-md sm:blur-lg animate-smoke-floor pointer-events-none z-10"
-              />
-
-              {/* Natural Grounding Floor Shadow under sneakers */}
-              <div
-                className="absolute -bottom-2 sm:-bottom-3 left-1/2 -translate-x-1/2 w-3/4 sm:w-2/3 h-3 sm:h-5 rounded-[100%] bg-neutral-900/30 dark:bg-black/90 blur-sm sm:blur-md pointer-events-none z-0"
-                aria-hidden="true"
-              />
-
-              {/* Subtle Blue Ambient Floor Reflection */}
-              <div
-                className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 w-1/2 sm:w-2/5 h-4 sm:h-6 rounded-[100%] bg-blue-500/15 dark:bg-blue-600/20 blur-lg pointer-events-none z-0"
-                aria-hidden="true"
-              />
-
-              {/* Floating Glassmorphism Dock Anchoring the Base */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 z-20 w-max max-w-[95%] pointer-events-auto"
-              >
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>

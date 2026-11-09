@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
-import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { useInView } from "@/hooks";
 import { Section, Card, CardBody } from "@/components/ui";
 import { Code2, Zap, Target, Users, Bot, Sparkles, CheckCircle2 } from "lucide-react";
-import profileImage from "../../../public/profile.png";
 
 const highlights = [
   {
@@ -69,25 +67,14 @@ export function AboutSection() {
       >
         {/* Left Column: Narrative & Focus */}
         <motion.div variants={itemVariants} className="space-y-6">
-          <div className="flex items-center gap-4 pb-2 border-b border-neutral-100 dark:border-neutral-800">
-            <div className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700/80 relative">
-              <Image
-                src={profileImage}
-                alt="Mohammed Rizwan"
-                width={56}
-                height={56}
-                className="w-full h-full object-cover object-top"
-              />
+          <div className="pb-2 border-b border-neutral-100 dark:border-neutral-800">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/80 mb-1">
+              <Sparkles className="w-3 h-3" />
+              <span>Full Stack Developer</span>
             </div>
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/80 mb-1">
-                <Sparkles className="w-3 h-3" />
-                <span>Full Stack Developer</span>
-              </div>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
-                Mohammed Rizwan
-              </h3>
-            </div>
+            <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
+              Mohammed Rizwan
+            </h3>
           </div>
 
           <div className="space-y-3 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
