@@ -4,8 +4,8 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "@/hooks";
 import { Section, Card, CardBody } from "@/components/ui";
-import { education, certifications } from "@/data/portfolio";
-import { GraduationCap, Award, ExternalLink, MapPin, Calendar } from "lucide-react";
+import { education } from "@/data/portfolio";
+import { GraduationCap, MapPin } from "lucide-react";
 
 export function EducationSection() {
   const ref = useRef<HTMLElement>(null);
